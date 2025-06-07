@@ -49,7 +49,6 @@ class ProcessSatisByPathAndRepositoryUrl implements ShouldQueue
                     if ($process->successful()) {
                         return;
                     }
-                    Log::error($process->errorOutput());
                 }
             );
         } catch (RuntimeException|ProcessTimedOutException) {
