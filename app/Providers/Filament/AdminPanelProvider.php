@@ -31,10 +31,10 @@ class AdminPanelProvider extends PanelProvider
             ->path('/')
             ->login(Login::class)
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Emerald,
             ])
             ->brandLogo(fn () => Vite::asset(config('filakit.favicon.logo')))
-            ->brandLogoHeight(fn () => request()->is('login', 'password-reset/*') ? '121px' : '50px')
+            ->brandLogoHeight(fn () => request()->is('login', 'password-reset/*') ? '98px' : '50px')
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->defaultThemeMode(config('filakit.theme_mode', ThemeMode::Dark))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
