@@ -1,0 +1,10 @@
+name: 2025-06-composer.jsg.tec.br
+php: '8.4'
+secured: true
+aliases: {  }
+services:
+  postgresql:
+    version: '16'
+    port: '${DB_PORT}'
+integrations:
+  forge: {  }

@@ -1,0 +1,122 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-BOWWay3-.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/filament/admin/theme.css": {
+    "file": "assets/theme-BihSnAAX.css",
+    "src": "resources/css/filament/admin/theme.css",
+    "isEntry": true
+  },
+  "resources/favicon/android-icon-144x144.png": {
+    "file": "assets/ms-icon-144x144-Bm7jhEjJ.png",
+    "src": "resources/favicon/android-icon-144x144.png"
+  },
+  "resources/favicon/android-icon-192x192.png": {
+    "file": "assets/android-icon-192x192-Cmyjp_fC.png",
+    "src": "resources/favicon/android-icon-192x192.png"
+  },
+  "resources/favicon/android-icon-36x36.png": {
+    "file": "assets/android-icon-36x36-CXzjwhdv.png",
+    "src": "resources/favicon/android-icon-36x36.png"
+  },
+  "resources/favicon/android-icon-48x48.png": {
+    "file": "assets/android-icon-48x48-BZoJ4g7W.png",
+    "src": "resources/favicon/android-icon-48x48.png"
+  },
+  "resources/favicon/android-icon-72x72.png": {
+    "file": "assets/apple-icon-72x72-BckmFdKm.png",
+    "src": "resources/favicon/android-icon-72x72.png"
+  },
+  "resources/favicon/android-icon-96x96.png": {
+    "file": "assets/favicon-96x96-UMJPPUuU.png",
+    "src": "resources/favicon/android-icon-96x96.png"
+  },
+  "resources/favicon/apple-icon-114x114.png": {
+    "file": "assets/apple-icon-114x114-BI2Glx6e.png",
+    "src": "resources/favicon/apple-icon-114x114.png"
+  },
+  "resources/favicon/apple-icon-120x120.png": {
+    "file": "assets/apple-icon-120x120-BgCr8tyu.png",
+    "src": "resources/favicon/apple-icon-120x120.png"
+  },
+  "resources/favicon/apple-icon-144x144.png": {
+    "file": "assets/ms-icon-144x144-Bm7jhEjJ.png",
+    "src": "resources/favicon/android-icon-144x144.png"
+  },
+  "resources/favicon/apple-icon-152x152.png": {
+    "file": "assets/apple-icon-152x152-C3fSowZg.png",
+    "src": "resources/favicon/apple-icon-152x152.png"
+  },
+  "resources/favicon/apple-icon-180x180.png": {
+    "file": "assets/apple-icon-180x180-BtkcC5CP.png",
+    "src": "resources/favicon/apple-icon-180x180.png"
+  },
+  "resources/favicon/apple-icon-57x57.png": {
+    "file": "assets/apple-icon-57x57-Dq7gYQhX.png",
+    "src": "resources/favicon/apple-icon-57x57.png"
+  },
+  "resources/favicon/apple-icon-60x60.png": {
+    "file": "assets/apple-icon-60x60-Cd2yVMag.png",
+    "src": "resources/favicon/apple-icon-60x60.png"
+  },
+  "resources/favicon/apple-icon-72x72.png": {
+    "file": "assets/apple-icon-72x72-BckmFdKm.png",
+    "src": "resources/favicon/android-icon-72x72.png"
+  },
+  "resources/favicon/apple-icon-76x76.png": {
+    "file": "assets/apple-icon-76x76-Cg5sFwUH.png",
+    "src": "resources/favicon/apple-icon-76x76.png"
+  },
+  "resources/favicon/apple-icon-precomposed.png": {
+    "file": "assets/apple-icon-BCA84RVu.png",
+    "src": "resources/favicon/apple-icon-precomposed.png"
+  },
+  "resources/favicon/apple-icon.png": {
+    "file": "assets/apple-icon-BCA84RVu.png",
+    "src": "resources/favicon/apple-icon-precomposed.png"
+  },
+  "resources/favicon/favicon-16x16.png": {
+    "file": "assets/favicon-16x16-D7V25fV3.png",
+    "src": "resources/favicon/favicon-16x16.png"
+  },
+  "resources/favicon/favicon-32x32.png": {
+    "file": "assets/favicon-32x32-Bxp_dPyW.png",
+    "src": "resources/favicon/favicon-32x32.png"
+  },
+  "resources/favicon/favicon-96x96.png": {
+    "file": "assets/favicon-96x96-UMJPPUuU.png",
+    "src": "resources/favicon/android-icon-96x96.png"
+  },
+  "resources/favicon/favicon.ico": {
+    "file": "assets/favicon-CpwEza95.ico",
+    "src": "resources/favicon/favicon.ico"
+  },
+  "resources/favicon/ms-icon-144x144.png": {
+    "file": "assets/ms-icon-144x144-Bm7jhEjJ.png",
+    "src": "resources/favicon/android-icon-144x144.png"
+  },
+  "resources/favicon/ms-icon-150x150.png": {
+    "file": "assets/ms-icon-150x150-B5gQ61vB.png",
+    "src": "resources/favicon/ms-icon-150x150.png"
+  },
+  "resources/favicon/ms-icon-310x310.png": {
+    "file": "assets/ms-icon-310x310-BsrIdWIU.png",
+    "src": "resources/favicon/ms-icon-310x310.png"
+  },
+  "resources/favicon/ms-icon-70x70.png": {
+    "file": "assets/ms-icon-70x70-FdNXPmSo.png",
+    "src": "resources/favicon/ms-icon-70x70.png"
+  },
+  "resources/images/logo-composer.png": {
+    "file": "assets/logo-composer-DsMIAavs.png",
+    "src": "resources/images/logo-composer.png"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-l0sNRNKZ.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
