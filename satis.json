@@ -1,0 +1,12 @@
+{
+    "name": "jsgtecnologia/2025-06-composer.jsg.tec.br",
+    "output-html": false,
+    "archive": {
+        "directory": "archives",
+        "skip-dev": true
+    },
+    "config": {
+        "secure-http": false
+    },
+    "minimum-stability": "stable"
+}
