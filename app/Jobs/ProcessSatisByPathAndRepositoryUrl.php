@@ -44,7 +44,7 @@ class ProcessSatisByPathAndRepositoryUrl implements ShouldQueue
             tap(
                 Process::timeout(60 * 60 * 24)
                     ->env(['COMPOSER_HOME' => $composer_path])
-                    ->run("php vendor/bin/satis build {$this->path} --repository-url " . $this->repositoryUrl),
+                    ->run("php vendor/bin/satis build {$this->path} --skip-errors --repository-url " . $this->repositoryUrl),
                 function (ProcessResult $process) {
                     if ($process->successful()) {
                         return;
