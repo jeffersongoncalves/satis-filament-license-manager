@@ -68,7 +68,6 @@ class AdminPanelProvider extends PanelProvider
                 //
             ])
             ->unsavedChangesAlerts()
-            ->passwordReset()
             ->profile()
             ->databaseNotifications()
             ->databaseNotificationsPolling('30s');
