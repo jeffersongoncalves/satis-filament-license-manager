@@ -23,7 +23,7 @@ class EnsureUserHasLicense
         [$name] = package_name("{$vendor}/{$package}");
 
         if (! Package::query()->where('name', $name)->exists()) {
-            abort(403);
+            abort(404);
         }
 
         return $next($request);
