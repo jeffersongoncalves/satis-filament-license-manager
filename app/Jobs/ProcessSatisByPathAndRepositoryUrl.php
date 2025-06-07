@@ -38,7 +38,7 @@ class ProcessSatisByPathAndRepositoryUrl implements ShouldQueue
         rescue(fn () => mkdir(dirname($composer_path), 0755, true), report: false);
         try {
             tap(
-                Process::forever()
+                Process::timeout(60 * 60 * 24)
                     ->env(['COMPOSER_HOME' => $composer_path])
                     ->run("php vendor/bin/satis build {$this->path} --repository-url ".$this->repositoryUrl),
                 function (ProcessResult $process) {
