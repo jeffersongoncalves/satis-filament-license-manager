@@ -20,6 +20,8 @@ class SyncPackages implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
+    public $timeout = 60 * 60 * 24;
+
     /**
      * Create a new job instance.
      */
