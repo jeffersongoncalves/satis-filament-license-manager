@@ -2,9 +2,10 @@
 
 namespace App\Policies;
 
+use App\Models\Package;
 use App\Models\User;
 
-class UserPolicy
+class PackagePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -17,7 +18,7 @@ class UserPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, User $model): bool
+    public function view(User $user, Package $package): bool
     {
         return $user->status;
     }
@@ -33,7 +34,7 @@ class UserPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, User $model): bool
+    public function update(User $user, Package $package): bool
     {
         return $user->status;
     }
@@ -41,19 +42,15 @@ class UserPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, User $model): bool
+    public function delete(User $user, Package $package): bool
     {
-        if ($user->is($model)) {
-            return false;
-        }
-
         return $user->status;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, User $model): bool
+    public function restore(User $user, Package $package): bool
     {
         return false;
     }
@@ -61,7 +58,7 @@ class UserPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, User $model): bool
+    public function forceDelete(User $user, Package $package): bool
     {
         return false;
     }
