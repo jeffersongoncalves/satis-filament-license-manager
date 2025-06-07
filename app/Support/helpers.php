@@ -33,3 +33,16 @@ if (! function_exists('App\Support\array_merge_recursive_unique')) {
         return $array1;
     }
 }
+
+if (! function_exists('App\Support\package_name')) {
+    function package_name(?string $value = null): ?array
+    {
+        if (! $value) {
+            return [null, null, null];
+        }
+
+        preg_match('/^([^\/]+)\/([^~@+.\s]+)/', $value, $matches);
+
+        return $matches;
+    }
+}

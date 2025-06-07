@@ -63,8 +63,8 @@ class SyncPackages implements ShouldQueue
         );
 
         Package::query()
-            ->select(["url", "type"])
-            ->groupBy(["url", "type"])
+            ->select(['url', 'type'])
+            ->groupBy(['url', 'type'])
             ->get()
             ->each(function (Package $package) use ($config) {
                 ProcessSatisByPathAndRepositoryUrl::dispatch($config->path, $this->getRepositoryUrl($package));
