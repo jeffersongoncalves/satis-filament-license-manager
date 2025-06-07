@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Jobs\SyncPackages;
 use App\Models\Package;
 use Illuminate\Support\Facades\Cache;
 use Psr\SimpleCache\InvalidArgumentException;
@@ -17,6 +18,7 @@ class PackageObserver
             Cache::delete('packages_count');
         } catch (InvalidArgumentException) {
         }
+        SyncPackages::dispatch();
     }
 
     /**

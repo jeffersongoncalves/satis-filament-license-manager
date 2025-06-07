@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Enums\PackageType;
+use App\Observers\PackageObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -29,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @mixin \Eloquent
  */
+#[ObservedBy(PackageObserver::class)]
 class Package extends Model
 {
     protected $fillable = [
