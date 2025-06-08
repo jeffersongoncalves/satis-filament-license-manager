@@ -9,6 +9,7 @@ use App\Enums\PackageType;
 use App\Models\Package;
 use App\Models\Token;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -34,8 +35,9 @@ class SyncTokenPackages implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(): void
+    public function handle(Filesystem $filesystem): void
     {
+        $filesystem->deleteDirectory(storage_path("app/private/satis/{$this->token->id}"));
         $config = SatisConfig::make();
         $config->homepage(config('app.url'));
         $config->outputDir(storage_path("app/private/satis/{$this->token->id}/"));
