@@ -18,12 +18,18 @@ class EnsureUserHasLicense
      */
     public function handle(Request $request, Closure $next): Response
     {
+        /** @var \App\Models\Token $token */
+        $token = $request->user();
         $vendor = $request->route('vendor');
         $package = $request->route('package');
         [$name] = package_name("{$vendor}/{$package}");
 
         if (! Package::query()->where('name', $name)->exists()) {
             abort(404);
+        }
+
+        if (! $token->packages()->where('name', $name)->exists()) {
+            abort(403);
         }
 
         return $next($request);

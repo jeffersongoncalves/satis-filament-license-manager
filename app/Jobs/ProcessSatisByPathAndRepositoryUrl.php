@@ -9,7 +9,6 @@ use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Process\Exceptions\ProcessTimedOutException;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Process;
 use RuntimeException;
 
@@ -28,8 +27,7 @@ class ProcessSatisByPathAndRepositoryUrl implements ShouldQueue
     public function __construct(
         private readonly string $path,
         private readonly string $repositoryUrl
-    )
-    {
+    ) {
         //
     }
 
@@ -39,12 +37,12 @@ class ProcessSatisByPathAndRepositoryUrl implements ShouldQueue
     public function handle(): void
     {
         $composer_path = storage_path('app/private/composer');
-        rescue(fn() => mkdir(dirname($composer_path), 0755, true), report: false);
+        rescue(fn () => mkdir(dirname($composer_path), 0755, true), report: false);
         try {
             tap(
                 Process::timeout(60 * 60 * 24)
                     ->env(['COMPOSER_HOME' => $composer_path])
-                    ->run("php vendor/bin/satis build {$this->path} --skip-errors --repository-url " . $this->repositoryUrl),
+                    ->run("php vendor/bin/satis build {$this->path} --skip-errors --repository-url ".$this->repositoryUrl),
                 function (ProcessResult $process) {
                     if ($process->successful()) {
                         return;

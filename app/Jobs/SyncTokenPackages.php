@@ -7,13 +7,14 @@ use App\Data\Repository as RepositoryData;
 use App\Data\SatisConfig;
 use App\Enums\PackageType;
 use App\Models\Package;
+use App\Models\Token;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class SyncPackages implements ShouldQueue
+class SyncTokenPackages implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -25,7 +26,7 @@ class SyncPackages implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct(protected Token $token)
     {
         //
     }
@@ -37,8 +38,9 @@ class SyncPackages implements ShouldQueue
     {
         $config = SatisConfig::make();
         $config->homepage(config('app.url'));
-        $config->outputDir(storage_path('app/private/satis/'));
-        Package::query()
+        $config->outputDir(storage_path("app/private/satis/{$this->token->id}/"));
+        $this->token
+            ->packages()
             ->orderBy('name')
             ->get()
             ->each(function (Package $package) use ($config) {
@@ -61,10 +63,11 @@ class SyncPackages implements ShouldQueue
         );
 
         $config->saveAs(
-            storage_path('app/private/satis/satis.json')
+            storage_path("app/private/satis/{$this->token->id}/satis.json")
         );
 
-        Package::query()
+        $this->token
+            ->packages()
             ->select(['url', 'type'])
             ->groupBy(['url', 'type'])
             ->get()

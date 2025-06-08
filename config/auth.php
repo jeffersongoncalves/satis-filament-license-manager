@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Token;
 use App\Models\User;
 
 return [
@@ -42,6 +43,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'token' => [
+            'driver' => 'session',
+            'provider' => 'tokens',
+        ],
     ],
 
     /*
@@ -70,6 +75,16 @@ return [
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
+        // ],
+
+        'tokens' => [
+            'driver' => 'eloquent',
+            'model' => Token::class,
+        ],
+
+        // 'tokens' => [
+        //     'driver' => 'database',
+        //     'table' => 'tokens',
         // ],
     ],
 

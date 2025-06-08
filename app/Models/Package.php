@@ -6,6 +6,7 @@ use App\Enums\PackageType;
 use App\Observers\PackageObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id
@@ -16,6 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $password
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\PackageToken|null $pivot
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Token> $tokens
+ * @property-read int|null $tokens_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Package newQuery()
@@ -41,6 +45,11 @@ class Package extends Model
         'username',
         'password',
     ];
+
+    public function tokens(): BelongsToMany
+    {
+        return $this->belongsToMany(Token::class)->using(PackageToken::class)->withTimestamps();
+    }
 
     protected function casts(): array
     {

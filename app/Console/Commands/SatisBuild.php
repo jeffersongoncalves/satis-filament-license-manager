@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\SyncPackages;
+use App\Jobs\SyncTokenPackages;
+use App\Models\Token;
 use Illuminate\Console\Command;
 
 class SatisBuild extends Command
@@ -26,7 +27,13 @@ class SatisBuild extends Command
      */
     public function handle(): int
     {
-        SyncPackages::dispatch();
+        $tokens = Token::query()
+            ->whereHas('packages')
+            ->get();
+
+        foreach ($tokens as $token) {
+            SyncTokenPackages::dispatch($token);
+        }
 
         return self::SUCCESS;
     }
