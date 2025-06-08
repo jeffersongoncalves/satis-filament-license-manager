@@ -29,15 +29,6 @@ class TokenObserver
             Cache::delete('tokens_count');
         } catch (InvalidArgumentException) {
         }
-        SyncTokenPackages::dispatch($token);
-    }
-
-    /**
-     * Handle the Token "updating" event.
-     */
-    public function updating(Token $token): void
-    {
-        SyncTokenPackages::dispatch($token)->delay(now()->addSeconds(60));
     }
 
     /**
