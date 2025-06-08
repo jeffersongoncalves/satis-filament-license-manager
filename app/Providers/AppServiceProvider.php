@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Providers\Auth\EloquentTokenProvider;
 use App\Providers\Filament\AdminPanelProvider;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,9 +21,9 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(AdminPanelProvider::class);
         }
         if (config('filakit.favicon.enabled')) {
-            FilamentView::registerRenderHook(PanelsRenderHook::HEAD_START, fn (): View => view('components.favicon'));
+            FilamentView::registerRenderHook(PanelsRenderHook::HEAD_START, fn(): View => view('components.favicon'));
         }
-        FilamentView::registerRenderHook(PanelsRenderHook::HEAD_START, fn (): View => view('components.js-md5'));
+        FilamentView::registerRenderHook(PanelsRenderHook::HEAD_START, fn(): View => view('components.js-md5'));
     }
 
     /**
@@ -29,6 +31,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->configureAuthToken();
+    }
+
+    private function configureAuthToken(): void
+    {
+        Auth::provider('eloquent-token-custom', function ($app, array $config) {
+            return new EloquentTokenProvider($config['model']);
+        });
     }
 }

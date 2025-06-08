@@ -78,7 +78,7 @@ return [
         // ],
 
         'tokens' => [
-            'driver' => 'eloquent',
+            'driver' => 'eloquent-token-custom',
             'model' => Token::class,
         ],
 
