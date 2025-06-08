@@ -91,6 +91,8 @@ class TokenResource extends Resource
                             ->copyMessageDuration(1500)
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('composer_repository')
+                            ->formatState(fn ($state) => nl2br($state))
+                            ->html()
                             ->copyable()
                             ->copyMessage(__('Composer repository copied successfully!'))
                             ->copyMessageDuration(1500)
