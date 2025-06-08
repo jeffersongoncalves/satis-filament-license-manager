@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -20,6 +21,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $folder
  * @property-read string $name_provider
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PackageRelease> $packageReleases
+ * @property-read int|null $package_releases_count
  * @property-read \App\Models\PackageToken|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Token> $tokens
  * @property-read int|null $tokens_count
@@ -56,6 +59,11 @@ class Package extends Model
     public function tokens(): BelongsToMany
     {
         return $this->belongsToMany(Token::class)->using(PackageToken::class)->withTimestamps();
+    }
+
+    public function packageReleases(): HasMany
+    {
+        return $this->hasMany(PackageRelease::class)->orderBy('version', 'desc');
     }
 
     protected function casts(): array

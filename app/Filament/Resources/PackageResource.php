@@ -172,11 +172,24 @@ class PackageResource extends Resource
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
-            ->columns(1)
             ->schema([
-                Infolists\Components\TextEntry::make('name'),
-                Infolists\Components\TextEntry::make('type'),
-                Infolists\Components\TextEntry::make('url'),
+                Infolists\Components\Section::make()
+                    ->schema([
+                        Infolists\Components\TextEntry::make('name')
+                            ->columnSpanFull(),
+                        Infolists\Components\TextEntry::make('type')
+                            ->columnSpanFull(),
+                        Infolists\Components\TextEntry::make('url')
+                            ->columnSpanFull(),
+                    ]),
+                Infolists\Components\Section::make()
+                    ->heading(__('Package Releases'))
+                    ->schema([
+                        Infolists\Components\TextEntry::make('packageReleases.version')
+                            ->hiddenLabel()
+                            ->listWithLineBreaks()
+                            ->bulleted(),
+                    ]),
             ]);
     }
 

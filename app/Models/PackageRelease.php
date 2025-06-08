@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Observers\PackageReleaseObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -35,6 +37,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @mixin \Eloquent
  */
+#[ObservedBy(PackageReleaseObserver::class)]
 class PackageRelease extends Model
 {
     protected $fillable = [
