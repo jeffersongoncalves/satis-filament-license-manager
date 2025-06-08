@@ -70,7 +70,7 @@ class DependencyResource extends Resource
                 Infolists\Components\Section::make()
                     ->heading(__('Package Releases'))
                     ->schema([
-                        Infolists\Components\TextEntry::make('packageReleases.version')
+                        Infolists\Components\TextEntry::make('packageReleases.name')
                             ->hiddenLabel()
                             ->listWithLineBreaks()
                             ->bulleted(),

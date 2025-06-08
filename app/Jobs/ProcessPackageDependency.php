@@ -3,9 +3,9 @@
 namespace App\Jobs;
 
 use App\Models\Dependency;
+use App\Models\DependencyPackageRelease;
 use App\Models\Package;
 use App\Models\PackageRelease;
-use App\Models\DependencyPackageRelease;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\File;

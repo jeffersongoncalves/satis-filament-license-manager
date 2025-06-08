@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Observers\PackageReleaseObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -22,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \App\Models\DependencyPackageRelease|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Dependency> $dependencies
  * @property-read int|null $dependencies_count
+ * @property-read string $name
  * @property-read \App\Models\Package $package
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\DependencyPackageRelease> $packageReleaseRequires
  * @property-read int|null $package_release_requires_count
@@ -66,5 +68,10 @@ class PackageRelease extends Model
     public function dependencies(): BelongsToMany
     {
         return $this->belongsToMany(Dependency::class)->using(DependencyPackageRelease::class)->withTimestamps();
+    }
+
+    protected function name(): Attribute
+    {
+        return Attribute::get(fn (): string => $this->package->name.' - '.$this->version);
     }
 }
