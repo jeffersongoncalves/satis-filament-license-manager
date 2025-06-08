@@ -23,5 +23,6 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withSchedule(function (Schedule $schedule) {
         $schedule->command('satis:build')->weekly();
+        $schedule->command('dependency:packages')->weekly();
     })
     ->create();
