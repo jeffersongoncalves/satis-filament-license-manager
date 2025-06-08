@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Composer\ArchivesController;
-use App\Http\Controllers\Composer\PackagesController;
 use App\Http\Controllers\Composer\IncludeController;
+use App\Http\Controllers\Composer\PackagesController;
 use App\Http\Controllers\Composer\PackagesV2Controller;
 use App\Http\Middleware\EnsureUserHasLicense;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;

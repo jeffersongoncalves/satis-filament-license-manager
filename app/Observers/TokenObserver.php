@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Jobs\SyncTokenPackages;
 use App\Models\Token;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Cache;

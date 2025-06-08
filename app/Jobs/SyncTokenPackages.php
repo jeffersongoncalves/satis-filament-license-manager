@@ -37,6 +37,10 @@ class SyncTokenPackages implements ShouldQueue
      */
     public function handle(Filesystem $filesystem): void
     {
+        if (is_dir(storage_path("app/private/satis/{$this->token->id}"))) {
+            $filesystem->deleteDirectory(storage_path("app/private/satis/{$this->token->id}"));
+        }
+
         $config = SatisConfig::make();
         $config->homepage(config('app.url'));
         $config->outputDir(storage_path("app/private/satis/{$this->token->id}/"));

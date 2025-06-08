@@ -26,7 +26,7 @@ class EloquentTokenProvider implements UserProvider
     /**
      * Create a new database user provider.
      *
-     * @param string $model
+     * @param  string  $model
      */
     public function __construct($model)
     {
@@ -36,7 +36,7 @@ class EloquentTokenProvider implements UserProvider
     /**
      * Retrieve a user by their unique identifier.
      *
-     * @param mixed $identifier
+     * @param  mixed  $identifier
      * @return UserContract|null
      */
     public function retrieveById($identifier)
@@ -55,9 +55,9 @@ class EloquentTokenProvider implements UserProvider
      */
     public function createModel()
     {
-        $class = '\\' . ltrim($this->model, '\\');
+        $class = '\\'.ltrim($this->model, '\\');
 
-        return new $class();
+        return new $class;
     }
 
     /**
@@ -65,7 +65,7 @@ class EloquentTokenProvider implements UserProvider
      *
      * @template TModel of \Illuminate\Database\Eloquent\Model
      *
-     * @param TModel|null $model
+     * @param  TModel|null  $model
      * @return \Illuminate\Database\Eloquent\Builder<TModel>
      */
     protected function newModelQuery($model = null)
@@ -82,8 +82,8 @@ class EloquentTokenProvider implements UserProvider
     /**
      * Retrieve a user by their unique identifier and "remember me" token.
      *
-     * @param mixed $identifier
-     * @param string $token
+     * @param  mixed  $identifier
+     * @param  string  $token
      * @return UserContract|null
      */
     public function retrieveByToken($identifier, #[\SensitiveParameter] $token)
@@ -94,7 +94,7 @@ class EloquentTokenProvider implements UserProvider
             $model->getAuthIdentifierName(), $identifier
         )->first();
 
-        if (!$retrievedModel) {
+        if (! $retrievedModel) {
             return;
         }
 
@@ -106,7 +106,7 @@ class EloquentTokenProvider implements UserProvider
     /**
      * Update the "remember me" token for the given user in storage.
      *
-     * @param string $token
+     * @param  string  $token
      * @return void
      */
     public function updateRememberToken(UserContract $user, #[\SensitiveParameter] $token)
@@ -140,7 +140,7 @@ class EloquentTokenProvider implements UserProvider
             }
             if (is_array($value) || $value instanceof Arrayable) {
                 $query->whereIn($key, $value);
-            } else if ($value instanceof Closure) {
+            } elseif ($value instanceof Closure) {
                 $value($query);
             } else {
                 $query->where($key, $value);
@@ -183,7 +183,7 @@ class EloquentTokenProvider implements UserProvider
     /**
      * Sets the name of the Eloquent user model.
      *
-     * @param string $model
+     * @param  string  $model
      * @return $this
      */
     public function setModel($model)
