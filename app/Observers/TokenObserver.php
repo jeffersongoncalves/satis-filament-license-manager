@@ -10,6 +10,9 @@ use Psr\SimpleCache\InvalidArgumentException;
 
 class TokenObserver
 {
+    /**
+     * Handle the Token "creating" event.
+     */
     public function creating(Token $token): void
     {
         $tokenGenerate = Token::generateCode('token');
