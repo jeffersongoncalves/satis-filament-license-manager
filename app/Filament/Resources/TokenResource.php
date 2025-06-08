@@ -83,6 +83,7 @@ class TokenResource extends Resource
                         Infolists\Components\TextEntry::make('token')
                             ->copyable()
                             ->copyMessage(__('Token copied successfully!'))
+                            ->copyMessageDuration(1500)
                             ->columnSpanFull(),
                     ]),
                 Infolists\Components\Section::make()
