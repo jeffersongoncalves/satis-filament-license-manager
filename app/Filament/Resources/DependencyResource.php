@@ -67,14 +67,14 @@ class DependencyResource extends Resource
                         Infolists\Components\TextEntry::make('version')
                             ->columnSpanFull(),
                     ]),
-                //                Infolists\Components\Section::make()
-                //                    ->heading(__('Packages'))
-                //                    ->schema([
-                //                        Infolists\Components\TextEntry::make('packages.name')
-                //                            ->hiddenLabel()
-                //                            ->listWithLineBreaks()
-                //                            ->bulleted(),
-                //                    ]),
+                Infolists\Components\Section::make()
+                    ->heading(__('Package Releases'))
+                    ->schema([
+                        Infolists\Components\TextEntry::make('packageReleases.version')
+                            ->hiddenLabel()
+                            ->listWithLineBreaks()
+                            ->bulleted(),
+                    ]),
             ]);
     }
 

@@ -75,6 +75,14 @@ class PackageReleaseResource extends Resource
                         Infolists\Components\TextEntry::make('homepage')
                             ->columnSpanFull(),
                     ]),
+                Infolists\Components\Section::make()
+                    ->heading(__('Dependencies'))
+                    ->schema([
+                        Infolists\Components\TextEntry::make('dependencies.name')
+                            ->hiddenLabel()
+                            ->listWithLineBreaks()
+                            ->bulleted(),
+                    ]),
             ]);
     }
 

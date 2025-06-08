@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Observers\DependencyObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -38,5 +39,10 @@ class Dependency extends Model
     public function packageReleaseRequires(): HasMany
     {
         return $this->hasMany(PackageReleaseRequire::class);
+    }
+
+    public function packageReleases(): BelongsToMany
+    {
+        return $this->belongsToMany(PackageRelease::class)->using(PackageReleaseRequire::class)->withTimestamps();
     }
 }
