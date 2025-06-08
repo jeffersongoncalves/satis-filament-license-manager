@@ -9,7 +9,7 @@ class PackagesController
 {
     public function __invoke(Request $request)
     {
-        if (! File::exists($path = storage_path("app/private/satis/{$request->user()->id}/packages.json"))) {
+        if (! File::exists($path = storage_path("app/private/satis/{$request->user('token')->id}/packages.json"))) {
             return response()->noContent(404);
         }
 
