@@ -33,11 +33,19 @@ class TokenObserver
     }
 
     /**
+     * Handle the Token "updating" event.
+     */
+    public function updating(Token $token): void
+    {
+        SyncTokenPackages::dispatch($token)->delay(now()->addSeconds(60));
+    }
+
+    /**
      * Handle the Token "updated" event.
      */
     public function updated(Token $token): void
     {
-        SyncTokenPackages::dispatch($token);
+        //
     }
 
     /**
