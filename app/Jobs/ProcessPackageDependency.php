@@ -27,10 +27,10 @@ class ProcessPackageDependency implements ShouldQueue
      */
     public function handle(): void
     {
-        if (File::exists($filename = storage_path('app/private/composer/cache/repo/' . $this->package->folder . '/provider-' . $this->package->name_provider . '.json'))) {
+        if (File::exists($filename = storage_path('app/private/composer/cache/repo/'.$this->package->folder.'/provider-'.$this->package->name_provider.'.json'))) {
             $this->processFilename($filename);
         } else {
-            if (!File::exists($filename = storage_path('app/private/composer/cache/repo/' . $this->package->folder . '/packages.json'))) {
+            if (! File::exists($filename = storage_path('app/private/composer/cache/repo/'.$this->package->folder.'/packages.json'))) {
                 return;
             }
             $this->processFilename($filename);
@@ -53,8 +53,8 @@ class ProcessPackageDependency implements ShouldQueue
                 [
                     'time' => $release['time'],
                     'type' => $release['type'] ?? 'library',
-                    'description' => $release['description'] ?? null,
-                    'homepage' => $release['homepage'] ?? null,
+                    'description' => $release['description'] ?? '',
+                    'homepage' => $release['homepage'] ?? '',
                 ]
             );
 

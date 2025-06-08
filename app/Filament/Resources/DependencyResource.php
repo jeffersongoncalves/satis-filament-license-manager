@@ -53,7 +53,7 @@ class DependencyResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string)Cache::rememberForever('dependencies_count', fn() => Dependency::query()->count());
+        return (string) Cache::rememberForever('dependencies_count', fn () => Dependency::query()->count());
     }
 
     public static function infolist(Infolist $infolist): Infolist
