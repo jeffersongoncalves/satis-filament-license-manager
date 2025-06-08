@@ -53,7 +53,7 @@ class DependencyResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) Cache::rememberForever('dependencies_count', fn () => Dependency::query()->count());
+        return (string)Cache::rememberForever('dependencies_count', fn() => Dependency::query()->count());
     }
 
     public static function infolist(Infolist $infolist): Infolist
@@ -89,9 +89,13 @@ class DependencyResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('version')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('package_releases_count')
+                    ->counts('packageReleases'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
