@@ -6,6 +6,8 @@ use App\Filament\Resources\TokenResource\Pages;
 use App\Models\Token;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -53,7 +55,7 @@ class TokenResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) Cache::rememberForever('tokens_count', fn () => Token::query()->count());
+        return (string)Cache::rememberForever('tokens_count', fn() => Token::query()->count());
     }
 
     public static function form(Form $form): Form
@@ -67,6 +69,30 @@ class TokenResource extends Resource
                     ->multiple()
                     ->relationship('packages', 'name')
                     ->searchable(),
+            ]);
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Infolists\Components\Section::make()
+                    ->schema([
+                        Infolists\Components\TextEntry::make('name')
+                            ->columnSpanFull(),
+                        Infolists\Components\TextEntry::make('token')
+                            ->copyable()
+                            ->copyMessage(__('Token copied successfully!'))
+                            ->columnSpanFull(),
+                    ]),
+                Infolists\Components\Section::make()
+                    ->heading(__('Packages'))
+                    ->schema([
+                        Infolists\Components\TextEntry::make('packages.name')
+                            ->hiddenLabel()
+                            ->listWithLineBreaks()
+                            ->bulleted(),
+                    ]),
             ]);
     }
 
