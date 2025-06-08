@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TokenResource\Pages;
-use App\Filament\Resources\TokenResource\RelationManagers;
 use App\Models\Token;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -54,7 +53,7 @@ class TokenResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string)Cache::rememberForever('tokens_count', fn() => Token::query()->count());
+        return (string) Cache::rememberForever('tokens_count', fn () => Token::query()->count());
     }
 
     public static function form(Form $form): Form

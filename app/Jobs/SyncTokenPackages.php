@@ -37,7 +37,10 @@ class SyncTokenPackages implements ShouldQueue
      */
     public function handle(Filesystem $filesystem): void
     {
-        $filesystem->deleteDirectory(storage_path("app/private/satis/{$this->token->id}"));
+        if (is_dir(storage_path("app/private/satis/{$this->token->id}"))) {
+            $filesystem->deleteDirectory(storage_path("app/private/satis/{$this->token->id}"));
+        }
+
         $config = SatisConfig::make();
         $config->homepage(config('app.url'));
         $config->outputDir(storage_path("app/private/satis/{$this->token->id}/"));
@@ -69,9 +72,9 @@ class SyncTokenPackages implements ShouldQueue
         );
 
         Package::query()
-            ->select(["url", "type"])
-            ->whereHas("tokens", fn($query) => $query->where("tokens.id", $this->token->id))
-            ->groupBy(["url", "type"])
+            ->select(['url', 'type'])
+            ->whereHas('tokens', fn ($query) => $query->where('tokens.id', $this->token->id))
+            ->groupBy(['url', 'type'])
             ->get()
             ->each(function (Package $package) use ($config) {
                 ProcessSatisByPathAndRepositoryUrl::dispatch($config->path, $this->getRepositoryUrl($package));

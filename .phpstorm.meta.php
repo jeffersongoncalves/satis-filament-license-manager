@@ -2676,10 +2676,10 @@ namespace PHPSTORM_META {
 'debugbar.openhandler','debugbar.clockwork','debugbar.assets.css','debugbar.assets.js','debugbar.cache.delete',
 'debugbar.queries.explain','filament.exports.download','filament.imports.failed-rows.download','filament.admin.auth.login','filament.admin.auth.logout',
 'filament.admin.auth.profile','filament.admin.pages.dashboard','filament.admin.resources.packages.index','filament.admin.resources.packages.create','filament.admin.resources.packages.view',
-'filament.admin.resources.packages.edit','filament.admin.resources.users.index','filament.admin.resources.users.create','filament.admin.resources.users.view','filament.admin.resources.users.edit',
-'filament.admin.resources.settings.operation.index','filament.admin.resources.settings.operation.view','livewire.update',
-'livewire.upload-file','livewire.preview-file',
-'storage.local',);
+'filament.admin.resources.packages.edit','filament.admin.resources.tokens.index','filament.admin.resources.tokens.create','filament.admin.resources.tokens.view','filament.admin.resources.tokens.edit',
+'filament.admin.resources.users.index','filament.admin.resources.users.create','filament.admin.resources.users.view','filament.admin.resources.users.edit','filament.admin.resources.settings.operation.index',
+'filament.admin.resources.settings.operation.view','livewire.update','livewire.upload-file',
+'livewire.preview-file','storage.local',);
         registerArgumentsSet('views', 
 'components.favicon','components.js-md5','filament-actions::badge-action','filament-actions::badge-group','filament-actions::button-action',
 'filament-actions::button-group','filament-actions::components.action','filament-actions::components.actions','filament-actions::components.group','filament-actions::components.modals',
