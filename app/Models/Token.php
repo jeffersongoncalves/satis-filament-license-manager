@@ -77,7 +77,7 @@ class Token extends Model implements AuthenticatableContract
     protected function composerCommand(): Attribute
     {
         return Attribute::get(function (): string {
-            $host = str(config('app.url'))->remove('http://', 'https://')->toString();
+            $host = str(config('app.url'))->replace(['http://', 'https://'], '')->toString();
 
             return "composer global config http-basic.{$host} token {$this->token}";
         });
