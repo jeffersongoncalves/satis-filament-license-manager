@@ -7,7 +7,7 @@ use App\Http\Controllers\Composer\PackagesV2Controller;
 use App\Http\Middleware\EnsureUserHasLicense;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth.basic:token,username', EnsureUserHasLicense::class]], function (): void {
+Route::group(['middleware' => ['auth.basic:token', EnsureUserHasLicense::class]], function (): void {
     Route::get('packages.json', PackagesController::class)->withoutMiddleware(EnsureUserHasLicense::class);
     Route::get('include/{include}.json', IncludeController::class)->withoutMiddleware(EnsureUserHasLicense::class);
     Route::get('p2/{vendor}/{package}.json', PackagesV2Controller::class);

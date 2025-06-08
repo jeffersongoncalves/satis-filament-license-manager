@@ -43,7 +43,7 @@ class Token extends Model implements AuthenticatableContract
 
     protected $fillable = [
         'name',
-        'username',
+        'email',
         'password',
         'token',
     ];
