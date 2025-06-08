@@ -19,7 +19,7 @@ class EnsureUserHasLicense
     public function handle(Request $request, Closure $next): Response
     {
         /** @var \App\Models\Token $token */
-        $token = $request->user();
+        $token = $request->user('token');
         $vendor = $request->route('vendor');
         $package = $request->route('package');
         [$name] = package_name("{$vendor}/{$package}");
