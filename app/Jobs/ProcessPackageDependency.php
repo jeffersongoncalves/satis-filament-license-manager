@@ -40,7 +40,7 @@ class ProcessPackageDependency implements ShouldQueue
                 ],
                 [
                     'time' => $release['time'],
-                    'type' => $release['type'],
+                    'type' => $release['type'] ?? "library",
                     'description' => $release['description'],
                     'homepage' => $release['homepage'],
                 ]
