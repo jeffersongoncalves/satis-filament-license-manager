@@ -55,7 +55,7 @@ class TokenResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string)Cache::rememberForever('tokens_count', fn() => Token::query()->count());
+        return (string) Cache::rememberForever('tokens_count', fn () => Token::query()->count());
     }
 
     public static function form(Form $form): Form
@@ -83,6 +83,16 @@ class TokenResource extends Resource
                         Infolists\Components\TextEntry::make('token')
                             ->copyable()
                             ->copyMessage(__('Token copied successfully!'))
+                            ->copyMessageDuration(1500)
+                            ->columnSpanFull(),
+                        Infolists\Components\TextEntry::make('composer_command')
+                            ->copyable()
+                            ->copyMessage(__('Composer command copied successfully!'))
+                            ->copyMessageDuration(1500)
+                            ->columnSpanFull(),
+                        Infolists\Components\TextEntry::make('composer_repository')
+                            ->copyable()
+                            ->copyMessage(__('Composer repository copied successfully!'))
                             ->copyMessageDuration(1500)
                             ->columnSpanFull(),
                     ]),

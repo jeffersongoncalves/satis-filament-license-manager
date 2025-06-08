@@ -7,6 +7,7 @@ use App\Observers\TokenObserver;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -18,6 +19,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $composer_command
+ * @property-read string $composer_repository
  * @property-read \App\Models\PackageToken|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Package> $packages
  * @property-read int|null $packages_count
@@ -69,5 +72,30 @@ class Token extends Model implements AuthenticatableContract
     public function packages(): BelongsToMany
     {
         return $this->belongsToMany(Package::class)->using(PackageToken::class)->withTimestamps();
+    }
+
+    protected function composerCommand(): Attribute
+    {
+        return Attribute::get(function (): string {
+            $host = str(config('app.url'))->remove('http://', 'https://')->toString();
+
+            return "composer global config http-basic.{$host} token {$this->token}";
+        });
+    }
+
+    protected function composerRepository(): Attribute
+    {
+        return Attribute::get(function (): string {
+            $host = config('app.url');
+
+            return <<<TEXT
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "$host"
+        }
+    ]
+TEXT;
+        });
     }
 }
