@@ -69,8 +69,14 @@ class DependencyResource extends Resource
                     ]),
                 Infolists\Components\Section::make()
                     ->heading(__('Package Releases'))
+                    ->relationship('packageReleases')
+                    ->columns()
                     ->schema([
-                        Infolists\Components\TextEntry::make('packageReleases.name')
+                        Infolists\Components\TextEntry::make('package.name')
+                            ->hiddenLabel()
+                            ->listWithLineBreaks()
+                            ->bulleted(),
+                        Infolists\Components\TextEntry::make('version')
                             ->hiddenLabel()
                             ->listWithLineBreaks()
                             ->bulleted(),
