@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Observers\DependencyObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -25,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @mixin \Eloquent
  */
+#[ObservedBy(DependencyObserver::class)]
 class Dependency extends Model
 {
     protected $fillable = [
