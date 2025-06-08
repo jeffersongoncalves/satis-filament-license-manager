@@ -48,7 +48,7 @@ class PackageReleaseResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return __('Package Release');
+        return __('Package');
     }
 
     public static function getNavigationBadge(): ?string
