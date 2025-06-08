@@ -40,7 +40,7 @@ class Token extends Model implements AuthenticatableContract
 {
     use Authenticatable;
     use GenerateCode;
-    protected $authPasswordName = 'token';
+
     protected $fillable = [
         'name',
         'email',
@@ -59,6 +59,11 @@ class Token extends Model implements AuthenticatableContract
     public static function getLengthCode(): array
     {
         return ['token' => 36];
+    }
+
+    public function getAuthPasswordName(): string
+    {
+        return 'token';
     }
 
     public function packages(): BelongsToMany
