@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\Models\Dependency;
 use App\Models\Package;
 use App\Models\PackageRelease;
-use App\Models\PackageReleaseRequire;
+use App\Models\DependencyPackageRelease;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\File;
@@ -51,7 +51,7 @@ class ProcessPackageDependency implements ShouldQueue
                     'name' => $require,
                     'version' => $version,
                 ]);
-                PackageReleaseRequire::firstOrCreate([
+                DependencyPackageRelease::firstOrCreate([
                     'package_id' => $this->package->id,
                     'package_release_id' => $packageRelease->id,
                     'dependency_id' => $dependency->id,

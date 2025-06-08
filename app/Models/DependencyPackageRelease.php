@@ -16,19 +16,19 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @property-read \App\Models\Package $package
  * @property-read \App\Models\PackageRelease $packageRelease
  *
- * @method static \Illuminate\Database\Eloquent\Builder<static>|PackageReleaseRequire newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|PackageReleaseRequire newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|PackageReleaseRequire query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|PackageReleaseRequire whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|PackageReleaseRequire whereDependencyId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|PackageReleaseRequire whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|PackageReleaseRequire wherePackageId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|PackageReleaseRequire wherePackageReleaseId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|PackageReleaseRequire whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease whereDependencyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease wherePackageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease wherePackageReleaseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease whereUpdatedAt($value)
  *
  * @mixin \Eloquent
  */
-class PackageReleaseRequire extends Pivot
+class DependencyPackageRelease extends Pivot
 {
     public $incrementing = true;
 

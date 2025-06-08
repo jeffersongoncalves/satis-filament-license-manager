@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $version
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PackageReleaseRequire> $packageReleaseRequires
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\DependencyPackageRelease> $packageReleaseRequires
  * @property-read int|null $package_release_requires_count
- * @property-read \App\Models\PackageReleaseRequire|null $pivot
+ * @property-read \App\Models\DependencyPackageRelease|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PackageRelease> $packageReleases
  * @property-read int|null $package_releases_count
  *
@@ -41,11 +41,11 @@ class Dependency extends Model
 
     public function packageReleaseRequires(): HasMany
     {
-        return $this->hasMany(PackageReleaseRequire::class);
+        return $this->hasMany(DependencyPackageRelease::class);
     }
 
     public function packageReleases(): BelongsToMany
     {
-        return $this->belongsToMany(PackageRelease::class)->using(PackageReleaseRequire::class)->withTimestamps();
+        return $this->belongsToMany(PackageRelease::class)->using(DependencyPackageRelease::class)->withTimestamps();
     }
 }

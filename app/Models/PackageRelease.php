@@ -19,11 +19,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $homepage
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\PackageReleaseRequire|null $pivot
+ * @property-read \App\Models\DependencyPackageRelease|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Dependency> $dependencies
  * @property-read int|null $dependencies_count
  * @property-read \App\Models\Package $package
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PackageReleaseRequire> $packageReleaseRequires
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\DependencyPackageRelease> $packageReleaseRequires
  * @property-read int|null $package_release_requires_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|PackageRelease newModelQuery()
@@ -60,11 +60,11 @@ class PackageRelease extends Model
 
     public function packageReleaseRequires(): HasMany
     {
-        return $this->hasMany(PackageReleaseRequire::class);
+        return $this->hasMany(DependencyPackageRelease::class);
     }
 
     public function dependencies(): BelongsToMany
     {
-        return $this->belongsToMany(Dependency::class)->using(PackageReleaseRequire::class)->withTimestamps();
+        return $this->belongsToMany(Dependency::class)->using(DependencyPackageRelease::class)->withTimestamps();
     }
 }
