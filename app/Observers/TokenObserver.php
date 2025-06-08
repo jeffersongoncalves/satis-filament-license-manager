@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Jobs\SyncTokenPackages;
 use App\Models\Token;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Cache;
 use Psr\SimpleCache\InvalidArgumentException;
 
@@ -45,6 +46,7 @@ class TokenObserver
             Cache::delete('tokens_count');
         } catch (InvalidArgumentException) {
         }
+        app(Filesystem::class)->deleteDirectory(storage_path("app/private/satis/{$token->id}"));
     }
 
     /**
