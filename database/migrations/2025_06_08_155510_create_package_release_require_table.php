@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('package_release_requires', function (Blueprint $table) {
+        Schema::create('package_release_require', function (Blueprint $table) {
             $table->id();
             $table->foreignId('package_id')->constrained()->cascadeOnDelete();
             $table->foreignId('package_release_id')->constrained()->cascadeOnDelete();
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('package_release_requires');
+        Schema::dropIfExists('package_release_require');
     }
 };
