@@ -200,6 +200,8 @@ class PackageResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('package_releases_count')
+                    ->counts('packageReleases'),
                 Tables\Columns\TextColumn::make('type')
                     ->searchable()
                     ->sortable(),
