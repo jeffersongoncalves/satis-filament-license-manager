@@ -40,16 +40,14 @@ class Token extends Model implements AuthenticatableContract
 {
     use Authenticatable;
     use GenerateCode;
-
+    protected $authPasswordName = 'token';
     protected $fillable = [
         'name',
         'email',
-        'password',
         'token',
     ];
 
     protected $hidden = [
-        'password',
         'token',
     ];
 
@@ -66,12 +64,5 @@ class Token extends Model implements AuthenticatableContract
     public function packages(): BelongsToMany
     {
         return $this->belongsToMany(Package::class)->using(PackageToken::class)->withTimestamps();
-    }
-
-    protected function casts(): array
-    {
-        return [
-            'password' => 'hashed',
-        ];
     }
 }
