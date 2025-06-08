@@ -16,7 +16,6 @@ class TokenObserver
     public function creating(Token $token): void
     {
         $tokenGenerate = Token::generateCode('token');
-        $token->setAttribute('password', $tokenGenerate);
         $token->setAttribute('token', $tokenGenerate);
     }
 
