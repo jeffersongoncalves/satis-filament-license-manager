@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->default('token');
-            $table->string('password');
             $table->string('token', Token::getLengthCodeByColumn('token'))->unique();
             $table->timestamps();
         });
