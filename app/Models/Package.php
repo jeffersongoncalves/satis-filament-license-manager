@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\PackageType;
 use App\Observers\PackageObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -17,6 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $password
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $folder
+ * @property-read string $name_provider
  * @property-read \App\Models\PackageToken|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Token> $tokens
  * @property-read int|null $tokens_count
@@ -46,6 +49,10 @@ class Package extends Model
         'password',
     ];
 
+    protected $hidden = [
+        'password',
+    ];
+
     public function tokens(): BelongsToMany
     {
         return $this->belongsToMany(Token::class)->using(PackageToken::class)->withTimestamps();
@@ -56,5 +63,15 @@ class Package extends Model
         return [
             'type' => PackageType::class,
         ];
+    }
+
+    protected function folder(): Attribute
+    {
+        return Attribute::get(fn (): string => str($this->url)->replace('://', '---')->toString());
+    }
+
+    protected function nameProvider(): Attribute
+    {
+        return Attribute::get(fn (): string => str($this->name)->replace('/', '~')->toString());
     }
 }
