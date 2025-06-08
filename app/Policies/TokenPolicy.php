@@ -36,7 +36,7 @@ class TokenPolicy
      */
     public function update(User $user, Token $token): bool
     {
-        return false;
+        return $user->status;
     }
 
     /**
