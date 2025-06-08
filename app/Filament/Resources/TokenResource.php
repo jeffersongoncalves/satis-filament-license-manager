@@ -91,6 +91,7 @@ class TokenResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ]);
     }
@@ -108,6 +109,7 @@ class TokenResource extends Resource
             'index' => Pages\ListTokens::route('/'),
             'create' => Pages\CreateToken::route('/create'),
             'view' => Pages\ViewToken::route('/{record}'),
+            'edit' => Pages\EditToken::route('/{record}/edit'),
         ];
     }
 }

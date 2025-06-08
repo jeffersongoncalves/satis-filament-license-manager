@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\Concerns\GenerateCode;
 use App\Observers\TokenObserver;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -34,8 +36,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @mixin \Eloquent
  */
 #[ObservedBy(TokenObserver::class)]
-class Token extends Model
+class Token extends Model implements AuthenticatableContract
 {
+    use Authenticatable;
     use GenerateCode;
 
     protected $fillable = [
