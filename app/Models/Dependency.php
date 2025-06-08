@@ -16,6 +16,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PackageReleaseRequire> $packageReleaseRequires
  * @property-read int|null $package_release_requires_count
+ * @property-read \App\Models\PackageReleaseRequire|null $pivot
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PackageRelease> $packageReleases
+ * @property-read int|null $package_releases_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency newQuery()

@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $homepage
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\PackageReleaseRequire|null $pivot
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Dependency> $dependencies
+ * @property-read int|null $dependencies_count
  * @property-read \App\Models\Package $package
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PackageReleaseRequire> $packageReleaseRequires
  * @property-read int|null $package_release_requires_count
