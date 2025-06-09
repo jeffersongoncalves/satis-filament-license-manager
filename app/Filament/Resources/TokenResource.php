@@ -74,8 +74,6 @@ class TokenResource extends Resource
                     ->optionColor('success')
                     ->tableLocation(PackageResource::class)
                     ->maxItems(fn () => Package::query()->count())
-                    ->requiresSelectionConfirmation()
-                    ->shouldCloseAfterSelection(false)
                     ->selectionAction(function (Forms\Components\Actions\Action $action) {
                         return $action
                             ->modalHeading(__('Select Packages'))
