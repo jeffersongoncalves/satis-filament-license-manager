@@ -181,7 +181,7 @@ class PackageResource extends Resource
                         Infolists\Components\TextEntry::make('url')
                             ->columnSpanFull(),
                     ]),
-                Infolists\Components\Group::make()
+                Infolists\Components\Grid::make()
                     ->columns()
                     ->relationship('packageRelease')
                     ->schema([
