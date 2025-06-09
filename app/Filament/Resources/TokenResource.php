@@ -71,7 +71,6 @@ class TokenResource extends Resource
                     ->relationship('packages', 'name')
                     ->multiple()
                     ->optionColor('success')
-                    ->tableLocation(PackageResource::class)
                     ->maxItems(fn () => Package::query()->count()),
             ]);
     }
