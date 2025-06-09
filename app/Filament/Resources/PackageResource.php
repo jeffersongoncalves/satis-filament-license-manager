@@ -200,10 +200,16 @@ class PackageResource extends Resource
                                     ->columnSpanFull(),
                             ]),
                         Infolists\Components\Section::make()
+                            ->relationship('dependencies')
                             ->columnSpan(1)
+                            ->columns()
                             ->heading(__('Dependencies'))
                             ->schema([
-                                Infolists\Components\TextEntry::make('dependencies.name')
+                                Infolists\Components\TextEntry::make('name')
+                                    ->hiddenLabel()
+                                    ->listWithLineBreaks()
+                                    ->bulleted(),
+                                Infolists\Components\TextEntry::make('version')
                                     ->hiddenLabel()
                                     ->listWithLineBreaks()
                                     ->bulleted(),
