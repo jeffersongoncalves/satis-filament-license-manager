@@ -69,7 +69,8 @@ class TokenResource extends Resource
                 TableSelect::make('packages')
                     ->relationship('packages', 'name')
                     ->multiple()
-                    ->optionColor('success'),
+                    ->optionColor('success')
+                    ->tableLocation(PackageResource::class),
             ]);
     }
 
