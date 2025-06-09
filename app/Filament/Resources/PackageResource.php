@@ -207,8 +207,8 @@ class PackageResource extends Resource
                             ->heading(__('Dependencies'))
                             ->schema([
                                 Infolists\Components\TextEntry::make('name')
-                                    ->state(function (Dependency $record): string {
-                                        return $record->name . ":" . $record->version;
+                                    ->state(function (Dependency $model): string {
+                                        return $model->name . ":" . $model->version;
                                     })
                                     ->hiddenLabel()
                                     ->listWithLineBreaks()
