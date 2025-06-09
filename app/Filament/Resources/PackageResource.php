@@ -182,6 +182,7 @@ class PackageResource extends Resource
                             ->columnSpanFull(),
                     ]),
                 Infolists\Components\Group::make()
+                    ->columns()
                     ->relationship('packageRelease')
                     ->schema([
                         Infolists\Components\Section::make()
