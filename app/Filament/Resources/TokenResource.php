@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TokenResource\Pages;
+use App\Models\Package;
 use App\Models\Token;
 use Dvarilek\FilamentTableSelect\Components\Form\TableSelect;
 use Filament\Forms;
@@ -70,7 +71,8 @@ class TokenResource extends Resource
                     ->relationship('packages', 'name')
                     ->multiple()
                     ->optionColor('success')
-                    ->tableLocation(PackageResource::class),
+                    ->tableLocation(PackageResource::class)
+                    ->maxItems(fn () => Package::query()->count()),
             ]);
     }
 

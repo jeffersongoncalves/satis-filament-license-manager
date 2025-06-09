@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $folder
  * @property-read string $name_provider
+ * @property-read \App\Models\PackageRelease|null $packageRelease
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PackageRelease> $packageReleases
  * @property-read int|null $package_releases_count
  * @property-read \App\Models\PackageToken|null $pivot
@@ -81,11 +82,11 @@ class Package extends Model
 
     protected function folder(): Attribute
     {
-        return Attribute::get(fn(): string => str($this->url)->replace('://', '---')->toString());
+        return Attribute::get(fn (): string => str($this->url)->replace('://', '---')->toString());
     }
 
     protected function nameProvider(): Attribute
     {
-        return Attribute::get(fn(): string => str($this->name)->replace('/', '~')->toString());
+        return Attribute::get(fn (): string => str($this->name)->replace('/', '~')->toString());
     }
 }
