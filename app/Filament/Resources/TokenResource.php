@@ -74,7 +74,12 @@ class TokenResource extends Resource
                     ->tableLocation(PackageResource::class)
                     ->maxItems(fn () => Package::query()->count())
                     ->requiresSelectionConfirmation()
-                    ->shouldCloseAfterSelection(false),
+                    ->shouldCloseAfterSelection(false)
+                    ->selectionAction(function (Forms\Components\Actions\Action $action) {
+                        return $action
+                            ->modalHeading(__('Select Packages'))
+                            ->slideOver(false);
+                    }),
             ]);
     }
 
