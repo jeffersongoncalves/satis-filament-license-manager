@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TokenResource\Pages;
 use App\Models\Token;
+use Dvarilek\FilamentTableSelect\Components\Form\TableSelect;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists;
@@ -65,10 +66,10 @@ class TokenResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Select::make('packages')
-                    ->multiple()
+                TableSelect::make('packages')
                     ->relationship('packages', 'name')
-                    ->searchable(),
+                    ->multiple()
+                    ->optionColor('success'),
             ]);
     }
 
