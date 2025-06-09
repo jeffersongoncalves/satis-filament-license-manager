@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property int $id
@@ -66,6 +67,11 @@ class Package extends Model
         return $this->hasMany(PackageRelease::class)->orderBy('version', 'desc');
     }
 
+    public function packageRelease(): HasOne
+    {
+        return $this->hasOne(PackageRelease::class)->latestOfMany('version');
+    }
+
     protected function casts(): array
     {
         return [
@@ -75,11 +81,11 @@ class Package extends Model
 
     protected function folder(): Attribute
     {
-        return Attribute::get(fn (): string => str($this->url)->replace('://', '---')->toString());
+        return Attribute::get(fn(): string => str($this->url)->replace('://', '---')->toString());
     }
 
     protected function nameProvider(): Attribute
     {
-        return Attribute::get(fn (): string => str($this->name)->replace('/', '~')->toString());
+        return Attribute::get(fn(): string => str($this->name)->replace('/', '~')->toString());
     }
 }

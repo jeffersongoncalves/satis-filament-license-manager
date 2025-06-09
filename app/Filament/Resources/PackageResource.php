@@ -14,7 +14,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Cache;
-
 use function App\Support\enum_equals;
 
 class PackageResource extends Resource
@@ -59,7 +58,7 @@ class PackageResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) Cache::rememberForever('packages_count', fn () => Package::query()->count());
+        return (string)Cache::rememberForever('packages_count', fn() => Package::query()->count());
     }
 
     public static function form(Form $form): Form
@@ -69,13 +68,13 @@ class PackageResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->label(
-                        fn (Forms\Get $get) => match (PackageType::of($get('type'))) {
+                        fn(Forms\Get $get) => match (PackageType::of($get('type'))) {
                             PackageType::Composer => 'vendor/package',
                             PackageType::Github => 'user/repo',
                         }
                     )
                     ->rule(
-                        fn (Forms\Get $get): Closure => function (string $attribute, string $value, Closure $fail) use ($get) {
+                        fn(Forms\Get $get): Closure => function (string $attribute, string $value, Closure $fail) use ($get) {
                             if (enum_equals($get('type'), PackageType::Composer)) {
                                 if (preg_match('/^[a-z0-9-]+\/[a-z0-9-]+$/', $value)) {
                                     return;
@@ -95,7 +94,7 @@ class PackageResource extends Resource
                     )
                     ->required(),
                 Forms\Components\ToggleButtons::make('type')
-                    ->hidden(fn ($context): bool => $context === 'edit')
+                    ->hidden(fn($context): bool => $context === 'edit')
                     ->hiddenLabel()
                     ->live()
                     ->options(PackageType::class)
@@ -107,21 +106,21 @@ class PackageResource extends Resource
                         Forms\Components\Placeholder::make('composer-instructions')
                             ->label('Configurações do Composer')
                             ->content('Para adicionar um pacote do tipo Composer, você deve informar as credenciais de acesso ao repositório privado. O produto será sub-licenciado usando o Satis. Cada membro do time receberá uma credencial de acesso individual. Não compartilhe essas credenciais com ninguém.')
-                            ->visible(fn (Forms\Get $get): bool => enum_equals($get('type'), PackageType::Composer)),
+                            ->visible(fn(Forms\Get $get): bool => enum_equals($get('type'), PackageType::Composer)),
                         Forms\Components\Placeholder::make('github-instructions')
                             ->label('Configurações do GitHub')
                             ->content('Para adicionar um pacote do tipo GitHub, você deve informar as credenciais de acesso ao repositório privado. O produto será sub-licenciado usando o GitHub Packages. Cada membro do time receberá um Personal Access Token (PAT). Não compartilhe essas credenciais com ninguém.')
-                            ->visible(fn (Forms\Get $get): bool => enum_equals($get('type'), PackageType::Github)),
+                            ->visible(fn(Forms\Get $get): bool => enum_equals($get('type'), PackageType::Github)),
                         Forms\Components\TextInput::make('url')
                             ->label(
-                                fn (Forms\Get $get) => match (PackageType::of($get('type'))) {
+                                fn(Forms\Get $get) => match (PackageType::of($get('type'))) {
                                     PackageType::Composer => 'URL do Repositório Composer',
                                     PackageType::Github => 'URL SSH do Repositório',
                                 }
                             )
                             ->rule(
-                                fn (Forms\Get $get): Closure => function (string $attribute, string $value, Closure $fail) use ($get) {
-                                    if (! enum_equals($get('type'), PackageType::Github)) {
+                                fn(Forms\Get $get): Closure => function (string $attribute, string $value, Closure $fail) use ($get) {
+                                    if (!enum_equals($get('type'), PackageType::Github)) {
                                         return filter_var($value, FILTER_VALIDATE_URL);
                                     }
 
@@ -136,7 +135,7 @@ class PackageResource extends Resource
                             ->columnSpanFull(),
                         Forms\Components\TextInput::make('username')
                             ->label(
-                                fn (Forms\Get $get) => match (PackageType::of($get('type'))) {
+                                fn(Forms\Get $get) => match (PackageType::of($get('type'))) {
                                     PackageType::Composer => 'Username do Composer',
                                     PackageType::Github => 'Username ou Organização do GitHub',
                                 }
@@ -144,7 +143,7 @@ class PackageResource extends Resource
                             ->required(),
                         Forms\Components\TextInput::make('password')
                             ->label(
-                                fn (Forms\Get $get) => match (PackageType::of($get('type'))) {
+                                fn(Forms\Get $get) => match (PackageType::of($get('type'))) {
                                     PackageType::Composer => 'Password do Composer',
                                     PackageType::Github => 'Personal Access Token (PAT)',
                                 }
@@ -152,8 +151,8 @@ class PackageResource extends Resource
                             ->password()
                             ->revealable()
                             ->rule(
-                                fn (Forms\Get $get): Closure => function (string $attribute, string $value, Closure $fail) use ($get) {
-                                    if (! enum_equals($get('type'), PackageType::Github)) {
+                                fn(Forms\Get $get): Closure => function (string $attribute, string $value, Closure $fail) use ($get) {
+                                    if (!enum_equals($get('type'), PackageType::Github)) {
                                         return;
                                     }
 
@@ -182,10 +181,37 @@ class PackageResource extends Resource
                         Infolists\Components\TextEntry::make('url')
                             ->columnSpanFull(),
                     ]),
+                Infolists\Components\Group::make()
+                    ->relationship('packageRelease')
+                    ->schema([
+                        Infolists\Components\Section::make()
+                            ->heading(__('Package Last Release'))
+                            ->schema([
+                                Infolists\Components\TextEntry::make('version')
+                                    ->columnSpanFull(),
+                                Infolists\Components\TextEntry::make('time')
+                                    ->columnSpanFull(),
+                                Infolists\Components\TextEntry::make('type')
+                                    ->columnSpanFull(),
+                                Infolists\Components\TextEntry::make('description')
+                                    ->columnSpanFull(),
+                                Infolists\Components\TextEntry::make('homepage')
+                                    ->columnSpanFull(),
+                            ]),
+                        Infolists\Components\Section::make()
+                            ->heading(__('Dependencies'))
+                            ->schema([
+                                Infolists\Components\TextEntry::make('dependencies.name')
+                                    ->hiddenLabel()
+                                    ->listWithLineBreaks()
+                                    ->bulleted(),
+                            ]),
+                    ]),
                 Infolists\Components\Section::make()
+                    ->relationship('packageReleases')
                     ->heading(__('Package Releases'))
                     ->schema([
-                        Infolists\Components\TextEntry::make('packageReleases.version')
+                        Infolists\Components\TextEntry::make('version')
                             ->hiddenLabel()
                             ->listWithLineBreaks()
                             ->bulleted(),
