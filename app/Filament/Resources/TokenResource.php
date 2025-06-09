@@ -11,6 +11,7 @@ use Filament\Forms\Form;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Cache;
@@ -78,6 +79,7 @@ class TokenResource extends Resource
                     ->selectionAction(function (Forms\Components\Actions\Action $action) {
                         return $action
                             ->modalHeading(__('Select Packages'))
+                            ->modalWidth(MaxWidth::MaxContent)
                             ->slideOver(false);
                     }),
             ]);
