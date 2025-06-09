@@ -185,6 +185,7 @@ class PackageResource extends Resource
                     ->relationship('packageRelease')
                     ->schema([
                         Infolists\Components\Section::make()
+                            ->columnSpan(1)
                             ->heading(__('Package Last Release'))
                             ->schema([
                                 Infolists\Components\TextEntry::make('version')
@@ -199,6 +200,7 @@ class PackageResource extends Resource
                                     ->columnSpanFull(),
                             ]),
                         Infolists\Components\Section::make()
+                            ->columnSpan(1)
                             ->heading(__('Dependencies'))
                             ->schema([
                                 Infolists\Components\TextEntry::make('dependencies.name')
