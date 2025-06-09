@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Enums\PackageType;
 use App\Filament\Resources\PackageResource\Pages;
+use App\Models\Dependency;
 use App\Models\Package;
 use Closure;
 use Filament\Forms;
@@ -206,10 +207,9 @@ class PackageResource extends Resource
                             ->heading(__('Dependencies'))
                             ->schema([
                                 Infolists\Components\TextEntry::make('name')
-                                    ->hiddenLabel()
-                                    ->listWithLineBreaks()
-                                    ->bulleted(),
-                                Infolists\Components\TextEntry::make('version')
+                                    ->state(function (Dependency $record): string {
+                                        return $record->name . ":" . $record->version;
+                                    })
                                     ->hiddenLabel()
                                     ->listWithLineBreaks()
                                     ->bulleted(),
