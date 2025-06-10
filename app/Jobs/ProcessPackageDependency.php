@@ -2,13 +2,10 @@
 
 namespace App\Jobs;
 
-use App\Models\Dependency;
-use App\Models\DependencyPackageRelease;
+use App\Actions\ProcessPackageFilename;
 use App\Models\Package;
-use App\Models\PackageRelease;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use Illuminate\Support\Facades\File;
 
 class ProcessPackageDependency implements ShouldQueue
 {
@@ -25,45 +22,8 @@ class ProcessPackageDependency implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(): void
+    public function handle(ProcessPackageFilename $processPackageFilename): void
     {
-        if (! File::exists($filename = storage_path('app/private/composer/cache/repo/'.$this->package->folder.'/provider-'.$this->package->name_provider.'.json'))) {
-            if (! File::exists($filename = storage_path('app/private/composer/cache/repo/'.$this->package->folder.'/packages.json'))) {
-                return;
-            }
-        }
-        $this->processFilename($filename);
-    }
-
-    private function processFilename(string $filename): void
-    {
-        $file = File::json($filename);
-        if (isset($file['packages'][$this->package->name])) {
-            return;
-        }
-        $releases = $file['packages'][$this->package->name];
-        foreach ($releases as $release) {
-            $packageRelease = PackageRelease::firstOrCreate([
-                'package_id' => $this->package->id,
-                'version' => $release['version'],
-            ], [
-                'time' => $release['time'],
-                'type' => ! empty($release['type']) ? $release['type'] : 'library',
-                'description' => ! empty($release['description']) ? $release['description'] : '',
-                'homepage' => ! empty($release['homepage']) ? $release['homepage'] : '',
-            ]);
-
-            foreach ($release['require'] as $require => $version) {
-                $dependency = Dependency::firstOrCreate([
-                    'name' => $require,
-                    'version' => $version,
-                ]);
-                DependencyPackageRelease::firstOrCreate([
-                    'package_id' => $this->package->id,
-                    'package_release_id' => $packageRelease->id,
-                    'dependency_id' => $dependency->id,
-                ]);
-            }
-        }
+        $processPackageFilename->execute($this->package);
     }
 }
