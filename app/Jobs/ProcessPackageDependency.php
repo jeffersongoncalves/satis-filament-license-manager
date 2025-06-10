@@ -27,14 +27,12 @@ class ProcessPackageDependency implements ShouldQueue
      */
     public function handle(): void
     {
-        if (File::exists($filename = storage_path('app/private/composer/cache/repo/'.$this->package->folder.'/provider-'.$this->package->name_provider.'.json'))) {
-            $this->processFilename($filename);
-        } else {
+        if (! File::exists($filename = storage_path('app/private/composer/cache/repo/'.$this->package->folder.'/provider-'.$this->package->name_provider.'.json'))) {
             if (! File::exists($filename = storage_path('app/private/composer/cache/repo/'.$this->package->folder.'/packages.json'))) {
                 return;
             }
-            $this->processFilename($filename);
         }
+        $this->processFilename($filename);
     }
 
     private function processFilename(string $filename): void
@@ -45,18 +43,15 @@ class ProcessPackageDependency implements ShouldQueue
         }
         $releases = $file['packages'][$this->package->name];
         foreach ($releases as $release) {
-            $packageRelease = PackageRelease::firstOrCreate(
-                [
-                    'package_id' => $this->package->id,
-                    'version' => $release['version'],
-                ],
-                [
-                    'time' => $release['time'],
-                    'type' => $release['type'] ?? 'library',
-                    'description' => $release['description'] ?? '',
-                    'homepage' => $release['homepage'] ?? '',
-                ]
-            );
+            $packageRelease = PackageRelease::firstOrCreate([
+                'package_id' => $this->package->id,
+                'version' => $release['version'],
+            ], [
+                'time' => $release['time'],
+                'type' => ! empty($release['type']) ? $release['type'] : 'library',
+                'description' => ! empty($release['description']) ? $release['description'] : '',
+                'homepage' => ! empty($release['homepage']) ? $release['homepage'] : '',
+            ]);
 
             foreach ($release['require'] as $require => $version) {
                 $dependency = Dependency::firstOrCreate([
