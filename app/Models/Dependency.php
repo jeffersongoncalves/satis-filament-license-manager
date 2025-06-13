@@ -58,7 +58,7 @@ class Dependency extends Model
     public function casts(): array
     {
         return [
-            'versions' => 'array',
+            'versions' => 'json',
         ];
     }
 }
