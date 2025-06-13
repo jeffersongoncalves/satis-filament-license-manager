@@ -64,7 +64,8 @@ class DependencyResource extends Resource
                     ->schema([
                         Infolists\Components\TextEntry::make('name')
                             ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('version')
+                        Infolists\Components\TextEntry::make('versions')
+                            ->badge()
                             ->columnSpanFull(),
                     ]),
                 Infolists\Components\Section::make()
@@ -76,8 +77,7 @@ class DependencyResource extends Resource
                             ->hiddenLabel()
                             ->listWithLineBreaks()
                             ->bulleted(),
-                        Infolists\Components\TextEntry::make('versions')
-                            ->badge()
+                        Infolists\Components\TextEntry::make('version')
                             ->hiddenLabel()
                             ->listWithLineBreaks()
                             ->bulleted(),
