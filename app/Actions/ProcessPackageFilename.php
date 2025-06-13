@@ -34,6 +34,7 @@ class ProcessPackageFilename
             ]);
 
             foreach ($release['require'] as $require => $version) {
+                $version = is_array($version) ? join(',', $version) : $version;
                 $dependency = Dependency::firstOrCreate([
                     'name' => $require,
                 ],[
