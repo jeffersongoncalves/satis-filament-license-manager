@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $version
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property array<array-key, mixed>|null $versions
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\DependencyPackageRelease> $packageReleaseRequires
  * @property-read int|null $package_release_requires_count
  * @property-read \App\Models\DependencyPackageRelease|null $pivot
@@ -28,6 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereVersion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereVersions($value)
  *
  * @mixin \Eloquent
  */
@@ -36,7 +38,11 @@ class Dependency extends Model
 {
     protected $fillable = [
         'name',
-        'version',
+        'versions',
+    ];
+
+    protected $attributes = [
+        'versions' => [],
     ];
 
     public function packageReleaseRequires(): HasMany
@@ -47,5 +53,12 @@ class Dependency extends Model
     public function packageReleases(): BelongsToMany
     {
         return $this->belongsToMany(PackageRelease::class)->using(DependencyPackageRelease::class)->withTimestamps();
+    }
+
+    public function casts(): array
+    {
+        return [
+            'versions' => 'array',
+        ];
     }
 }

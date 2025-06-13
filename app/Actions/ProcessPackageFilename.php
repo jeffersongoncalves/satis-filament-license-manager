@@ -36,8 +36,14 @@ class ProcessPackageFilename
             foreach ($release['require'] as $require => $version) {
                 $dependency = Dependency::firstOrCreate([
                     'name' => $require,
-                    'version' => $version,
                 ]);
+                $versions = $dependency->versions ?? [];
+                if (! in_array($version, $versions)) {
+                    $versions[] = $version;
+                    $dependency->update([
+                        'versions' => collect($versions)->unique()->values()->all(),
+                    ]);
+                }
                 DependencyPackageRelease::firstOrCreate([
                     'package_id' => $package->id,
                     'package_release_id' => $packageRelease->id,

@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dependencies', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->json('versions');
-            $table->timestamps();
+        Schema::table('dependencies', function (Blueprint $table) {
+            $table->json('versions')->nullable();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dependencies');
+        Schema::table('dependencies', function (Blueprint $table) {
+            $table->dropColumn('versions');
+        });
     }
 };

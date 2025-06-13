@@ -76,7 +76,8 @@ class DependencyResource extends Resource
                             ->hiddenLabel()
                             ->listWithLineBreaks()
                             ->bulleted(),
-                        Infolists\Components\TextEntry::make('version')
+                        Infolists\Components\TextEntry::make('versions')
+                            ->badge()
                             ->hiddenLabel()
                             ->listWithLineBreaks()
                             ->bulleted(),
@@ -91,9 +92,8 @@ class DependencyResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('version')
-                    ->searchable()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('versions')
+                    ->badge(),
                 Tables\Columns\TextColumn::make('package_releases_count')
                     ->counts('packageReleases'),
                 Tables\Columns\TextColumn::make('created_at')
