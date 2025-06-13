@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Package;
 use Illuminate\Contracts\Process\ProcessResult;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -45,6 +46,10 @@ class ProcessSatisByPathAndRepositoryUrl implements ShouldQueue
                     ->run("php vendor/bin/satis build {$this->path} --skip-errors --repository-url ".$this->repositoryUrl),
                 function (ProcessResult $process) {
                     if ($process->successful()) {
+                        $packages = Package::query()->where('url', $this->repositoryUrl)->get();
+                        foreach ($packages as $package) {
+                            ProcessPackageDependency::dispatch($package);
+                        }
                         return;
                     }
                 }
