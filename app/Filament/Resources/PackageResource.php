@@ -190,6 +190,7 @@ class PackageResource extends Resource
                             ->heading(__('Package Last Release'))
                             ->schema([
                                 Infolists\Components\TextEntry::make('version')
+                                    ->badge()
                                     ->columnSpanFull(),
                                 Infolists\Components\TextEntry::make('time')
                                     ->columnSpanFull(),
@@ -211,6 +212,7 @@ class PackageResource extends Resource
                                     ->listWithLineBreaks()
                                     ->bulleted(),
                                 Infolists\Components\TextEntry::make('version')
+                                    ->badge()
                                     ->hiddenLabel()
                                     ->listWithLineBreaks()
                                     ->bulleted(),

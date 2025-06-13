@@ -65,6 +65,7 @@ class PackageReleaseResource extends Resource
                         Infolists\Components\TextEntry::make('package.name')
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('version')
+                            ->badge()
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('time')
                             ->columnSpanFull(),
@@ -94,6 +95,7 @@ class PackageReleaseResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('version')
+                    ->badge()
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('dependencies_count')
