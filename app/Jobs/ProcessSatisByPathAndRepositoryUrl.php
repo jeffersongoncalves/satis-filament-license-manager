@@ -50,7 +50,6 @@ class ProcessSatisByPathAndRepositoryUrl implements ShouldQueue
                         foreach ($packages as $package) {
                             ProcessPackageDependency::dispatch($package);
                         }
-                        return;
                     }
                 }
             );
