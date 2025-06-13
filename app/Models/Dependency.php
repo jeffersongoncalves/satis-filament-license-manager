@@ -41,10 +41,6 @@ class Dependency extends Model
         'versions',
     ];
 
-    protected $attributes = [
-        'versions' => [],
-    ];
-
     public function packageReleaseRequires(): HasMany
     {
         return $this->hasMany(DependencyPackageRelease::class);
@@ -58,7 +54,7 @@ class Dependency extends Model
     public function casts(): array
     {
         return [
-            'versions' => 'json',
+            'versions' => 'array',
         ];
     }
 }
