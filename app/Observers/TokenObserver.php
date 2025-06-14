@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Jobs\SyncTokenPackages;
 use App\Models\Token;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Cache;
@@ -27,6 +28,7 @@ class TokenObserver
             Cache::delete('tokens_count');
         } catch (InvalidArgumentException) {
         }
+        SyncTokenPackages::dispatch($token);
     }
 
     /**
