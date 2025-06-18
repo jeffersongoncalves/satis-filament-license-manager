@@ -13,6 +13,7 @@ class ListUsers extends ListRecords
 
     public function mount(): void
     {
+        parent::mount();
         filament()->getCurrentPanel()->maxContentWidth(MaxWidth::Full);
     }
 
