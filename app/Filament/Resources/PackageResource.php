@@ -219,15 +219,6 @@ class PackageResource extends Resource
                                     ->bulleted(),
                             ]),
                     ]),
-                Infolists\Components\Section::make()
-                    ->relationship('packageReleases')
-                    ->heading(__('Package Releases'))
-                    ->schema([
-                        Infolists\Components\TextEntry::make('version')
-                            ->hiddenLabel()
-                            ->listWithLineBreaks()
-                            ->bulleted(),
-                    ]),
             ]);
     }
 
