@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Enums\PackageType;
 use App\Filament\Resources\PackageResource\Pages;
+use App\Filament\Resources\PackageResource\RelationManagers;
 use App\Models\Package;
 use Closure;
 use Filament\Forms;
@@ -273,7 +274,7 @@ class PackageResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\PackageReleasesRelationManager::class,
         ];
     }
 

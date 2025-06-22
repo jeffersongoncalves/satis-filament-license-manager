@@ -34,11 +34,11 @@ class ProcessPackageFilename
             ]);
 
             foreach ($release['require'] as $require => $version) {
-                $version = is_array($version) ? join(',', $version) : $version;
+                $version = is_array($version) ? implode(',', $version) : $version;
                 $dependency = Dependency::firstOrCreate([
                     'name' => $require,
-                ],[
-                    "versions" => [$version]
+                ], [
+                    'versions' => [$version],
                 ]);
                 $versions = collect($dependency->versions ?? []);
                 if (! $versions->contains($version)) {
