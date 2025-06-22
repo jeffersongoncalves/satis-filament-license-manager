@@ -48,6 +48,9 @@ class PackageReleasesRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('version')
             ->columns([
+                Tables\Columns\TextColumn::make('package.name')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('version')
                     ->badge()
                     ->searchable()
