@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\DependencyResource\Pages;
+use App\Filament\Resources\DependencyResource\RelationManagers;
 use App\Models\Dependency;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
@@ -68,20 +69,6 @@ class DependencyResource extends Resource
                             ->badge()
                             ->columnSpanFull(),
                     ]),
-                Infolists\Components\Section::make()
-                    ->heading(__('Package Releases'))
-                    ->relationship('packageReleases')
-                    ->columns()
-                    ->schema([
-                        Infolists\Components\TextEntry::make('package.name')
-                            ->hiddenLabel()
-                            ->listWithLineBreaks()
-                            ->bulleted(),
-                        Infolists\Components\TextEntry::make('version')
-                            ->hiddenLabel()
-                            ->listWithLineBreaks()
-                            ->bulleted(),
-                    ]),
             ]);
     }
 
@@ -116,7 +103,7 @@ class DependencyResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\PackageReleasesRelationManager::class,
         ];
     }
 
