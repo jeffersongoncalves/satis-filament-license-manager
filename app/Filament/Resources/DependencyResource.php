@@ -85,8 +85,7 @@ class DependencyResource extends Resource
                     ->colors(fn () => [
                         '#AB21FC' => '^8.1',
                         'primary',
-                    ])
-                    ->colors(fn ($record) => count($record->versions) > 1 ? [Color::hex('#AB21FC')] : ['success']),
+                    ]),
                 Tables\Columns\TextColumn::make('package_releases_count')
                     ->counts('packageReleases'),
                 Tables\Columns\TextColumn::make('created_at')
