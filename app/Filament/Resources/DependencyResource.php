@@ -82,7 +82,7 @@ class DependencyResource extends Resource
                 Tables\Columns\TextColumn::make('versions')
                     ->badge()
                     ->colors(fn() => [
-                        'danger' => fn($state) => $state === '^8.1',
+                        'danger' => fn($state) => in_array('^8.1', $state),
                         'primary',
                     ]),
                 Tables\Columns\TextColumn::make('package_releases_count')
