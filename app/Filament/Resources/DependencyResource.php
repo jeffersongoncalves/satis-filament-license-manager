@@ -80,7 +80,8 @@ class DependencyResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('versions')
-                    ->badge(),
+                    ->badge()
+                    ->colors(fn ($record) => count($record->versions) > 1 ? Color::hex('#AB21FC') : 'success'),
                 Tables\Columns\TextColumn::make('package_releases_count')
                     ->counts('packageReleases'),
                 Tables\Columns\TextColumn::make('created_at')
