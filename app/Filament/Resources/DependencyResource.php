@@ -8,7 +8,6 @@ use App\Models\Dependency;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
-use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Cache;
@@ -55,7 +54,7 @@ class DependencyResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) Cache::rememberForever('dependencies_count', fn () => Dependency::query()->count());
+        return (string)Cache::rememberForever('dependencies_count', fn() => Dependency::query()->count());
     }
 
     public static function infolist(Infolist $infolist): Infolist
@@ -82,8 +81,8 @@ class DependencyResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('versions')
                     ->badge()
-                    ->colors(fn () => [
-                        '#AB21FC' => '^8.1',
+                    ->colors(fn() => [
+                        'danger' => fn($state) => $state === '^8.1',
                         'primary',
                     ]),
                 Tables\Columns\TextColumn::make('package_releases_count')
