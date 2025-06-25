@@ -80,11 +80,7 @@ class DependencyResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('versions')
-                    ->badge()
-                    ->colors(fn() => [
-                        'danger' => fn($state) => in_array('^8.1', $state),
-                        'primary',
-                    ]),
+                    ->badge(),
                 Tables\Columns\TextColumn::make('package_releases_count')
                     ->counts('packageReleases'),
                 Tables\Columns\TextColumn::make('created_at')
