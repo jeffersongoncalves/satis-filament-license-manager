@@ -2,18 +2,22 @@
 
 namespace App\Jobs;
 
-use App\Data\Package as PackageData;
-use App\Data\Repository as RepositoryData;
+use App\Data\PackageData;
+use App\Data\RepositoryData;
 use App\Data\SatisConfig;
 use App\Enums\PackageType;
 use App\Models\Package;
 use App\Models\Token;
+use Illuminate\Contracts\Process\ProcessResult;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Process\Exceptions\ProcessTimedOutException;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Process;
+use RuntimeException;
 
 class SyncTokenPackages implements ShouldQueue
 {
@@ -71,14 +75,25 @@ class SyncTokenPackages implements ShouldQueue
             storage_path("app/private/satis/{$this->token->id}/satis.json")
         );
 
-        Package::query()
-            ->select(['url', 'type'])
-            ->whereHas('tokens', fn ($query) => $query->where('tokens.id', $this->token->id))
-            ->groupBy(['url', 'type'])
-            ->get()
-            ->each(function (Package $package) use ($config) {
-                ProcessSatisByPathAndRepositoryUrl::dispatch($config->path, $this->getRepositoryUrl($package));
-            });
+        $composer_path = storage_path('app/private/composer');
+        rescue(fn () => mkdir(dirname($composer_path), 0755, true), report: false);
+        try {
+            tap(
+                Process::timeout(60 * 60 * 24)
+                    ->env(['COMPOSER_HOME' => $composer_path])
+                    ->run("php vendor/bin/satis build {$config->path} --skip-errors"),
+                function (ProcessResult $process) {
+                    if ($process->successful()) {
+                        $this->token->packages()->get()->each(function (Package $package) {
+                            ProcessPackageDependency::dispatch($package);
+                        });
+                    }
+                }
+            );
+        } catch (RuntimeException|ProcessTimedOutException) {
+        }
+
+        $config->delete();
     }
 
     private function getRepositoryType(Package $package): string

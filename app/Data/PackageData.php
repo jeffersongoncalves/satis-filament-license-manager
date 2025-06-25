@@ -4,22 +4,18 @@ namespace App\Data;
 
 use Illuminate\Contracts\Support\Arrayable;
 
-readonly class Repository implements Arrayable
+readonly class PackageData implements Arrayable
 {
     public function __construct(
         public string $name,
-        public string $type,
-        public string $url,
-        public array $options = []
+        public string $version = '*'
     ) {}
 
     public function toArray(): array
     {
         return [
             'name' => $this->name,
-            'type' => $this->type,
-            'url' => $this->url,
-            'options' => $this->options,
+            'version' => $this->version,
         ];
     }
 }

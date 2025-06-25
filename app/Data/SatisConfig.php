@@ -60,14 +60,14 @@ class SatisConfig implements Stringable
         return $this;
     }
 
-    public function repository(Repository $repository): static
+    public function repository(RepositoryData $repository): static
     {
         $this->config['repositories'][] = $repository->toArray();
 
         return $this;
     }
 
-    public function require(Package $package): static
+    public function require(PackageData $package): static
     {
         $this->config['require'][$package->name] = $package->version;
 
