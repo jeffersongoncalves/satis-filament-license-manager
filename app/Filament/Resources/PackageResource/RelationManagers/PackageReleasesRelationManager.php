@@ -33,18 +33,18 @@ class PackageReleasesRelationManager extends RelationManager
                 Infolists\Components\TextEntry::make('time')
                     ->label(__('package_releases.infolist.time'))
                     ->columnSpanFull()
-                    ->hidden(fn($state) => blank($state)),
+                    ->hidden(fn ($state) => blank($state)),
                 Infolists\Components\TextEntry::make('type')
                     ->label(__('package_releases.infolist.type'))
                     ->columnSpanFull(),
                 Infolists\Components\TextEntry::make('description')
                     ->label(__('package_releases.infolist.description'))
                     ->columnSpanFull()
-                    ->hidden(fn($state) => blank($state)),
+                    ->hidden(fn ($state) => blank($state)),
                 Infolists\Components\TextEntry::make('homepage')
                     ->label(__('package_releases.infolist.homepage'))
                     ->columnSpanFull()
-                    ->hidden(fn($state) => blank($state)),
+                    ->hidden(fn ($state) => blank($state)),
                 Infolists\Components\RepeatableEntry::make('dependencies')
                     ->label(__('package_releases.infolist.section.dependencies'))
                     ->schema([

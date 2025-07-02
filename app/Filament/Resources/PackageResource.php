@@ -198,7 +198,7 @@ class PackageResource extends Resource
                     ->relationship('packageRelease')
                     ->schema([
                         Infolists\Components\Section::make()
-                            ->label(__('packages.infolist.section.package_release'))
+                            ->heading(__('packages.infolist.section.package_release'))
                             ->columnSpan(1)
                             ->schema([
                                 Infolists\Components\TextEntry::make('version')
@@ -221,17 +221,22 @@ class PackageResource extends Resource
                                     ->columnSpanFull()
                                     ->hidden(fn ($state) => blank($state)),
                             ]),
-                        Infolists\Components\RepeatableEntry::make('dependencies')
-                            ->label(__('package_releases.infolist.section.dependencies'))
+                        Infolists\Components\Section::make()
+                            ->heading(__('packages.infolist.section.dependencies'))
+                            ->columnSpan(1)
                             ->schema([
-                                Infolists\Components\TextEntry::make('name')
-                                    ->hiddenLabel(),
-                                Infolists\Components\TextEntry::make('pivot.version')
-                                    ->hiddenLabel()
-                                    ->badge(),
-                            ])
-                            ->columns()
-                            ->contained(false),
+                                Infolists\Components\RepeatableEntry::make('dependencies')
+                                    ->label(__('package_releases.infolist.section.dependencies'))
+                                    ->schema([
+                                        Infolists\Components\TextEntry::make('name')
+                                            ->hiddenLabel(),
+                                        Infolists\Components\TextEntry::make('pivot.version')
+                                            ->hiddenLabel()
+                                            ->badge(),
+                                    ])
+                                    ->columns()
+                                    ->contained(false),
+                            ]),
                     ]),
             ]);
     }
