@@ -66,8 +66,8 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->navigationGroups([
-                __('Package'),
-                __('User'),
+                __('navigation.package'),
+                __('navigation.package_info'),
             ])
             ->plugins([
                 OneTimeOperationsPlugin::make(),
