@@ -4,5 +4,5 @@ return [
     'package' => 'Package',
     'package_info' => 'Package Info',
     'management' => 'Management',
-    'setting' => 'Setting',
+    'setting' => 'Settings',
 ];
