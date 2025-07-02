@@ -7,5 +7,6 @@ export default {
         './resources/views/components/**/*.blade.php',
         './resources/views/filament/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
+        './vendor/bezhansalleh/filament-language-switch/resources/views/**/*.blade.php',
     ],
 }

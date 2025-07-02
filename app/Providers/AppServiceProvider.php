@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Providers\Auth\EloquentTokenProvider;
 use App\Providers\Filament\AdminPanelProvider;
+use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Contracts\View\View;
@@ -32,6 +33,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureAuthToken();
+        LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
+            $switch->locales(['en','es','pt_BR']);
+        });
     }
 
     private function configureAuthToken(): void
