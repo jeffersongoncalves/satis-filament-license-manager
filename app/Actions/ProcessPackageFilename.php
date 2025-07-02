@@ -29,7 +29,7 @@ class ProcessPackageFilename
                 'package_id' => $package->id,
                 'version' => $release['version'],
             ], [
-                'time' => $release['time'],
+                'time' => ! empty($release['time']) ? $release['time'] : '',
                 'type' => ! empty($release['type']) ? $release['type'] : 'library',
                 'description' => ! empty($release['description']) ? $release['description'] : '',
                 'homepage' => ! empty($release['homepage']) ? $release['homepage'] : '',
