@@ -5,6 +5,7 @@ namespace App\Filament\Resources\PackageResource\RelationManagers;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
@@ -103,7 +104,8 @@ class PackageReleasesRelationManager extends RelationManager
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
-                    ->slideOver(),
+                    ->slideOver()
+                    ->modalWidth(MaxWidth::Large),
             ]);
     }
 
