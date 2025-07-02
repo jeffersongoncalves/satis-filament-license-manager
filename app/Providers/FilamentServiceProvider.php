@@ -71,7 +71,7 @@ class FilamentServiceProvider extends ServiceProvider
         });
 
         Forms\Components\Actions\Action::configureUsing(function (Forms\Components\Actions\Action $action) {
-            return $action->modalWidth(MaxWidth::Medium)
+            return $action->modalWidth(MaxWidth::Large)
                 ->closeModalByClickingAway(false);
         });
 
