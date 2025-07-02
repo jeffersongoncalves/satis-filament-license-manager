@@ -93,6 +93,7 @@ class PackageReleaseResource extends Resource
                             ->label(__('package_releases.infolist.version')),
                     ])
                     ->columns()
+                    ->grid()
                     ->columnSpanFull(),
             ]);
     }
