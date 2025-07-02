@@ -7,6 +7,7 @@ use Filament\Infolists\Infolist;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
 
 class PackageReleasesRelationManager extends RelationManager
 {
@@ -66,5 +67,10 @@ class PackageReleasesRelationManager extends RelationManager
             ->actions([
                 Tables\Actions\ViewAction::make(),
             ]);
+    }
+
+    protected function getTableHeading(): string|Htmlable|null
+    {
+        return __('package_releases.plural');
     }
 }
