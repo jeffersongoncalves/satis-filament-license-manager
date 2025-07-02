@@ -40,13 +40,13 @@ class SyncTenantPackages implements ShouldQueue
      */
     public function handle(Filesystem $filesystem): void
     {
-        if (is_dir(storage_path("app/private/satis/tenant"))) {
-            $filesystem->deleteDirectory(storage_path("app/private/satis/tenant"));
+        if (is_dir(storage_path('app/private/satis/tenant'))) {
+            $filesystem->deleteDirectory(storage_path('app/private/satis/tenant'));
         }
 
         $config = SatisConfig::make();
         $config->homepage(config('app.url'));
-        $config->outputDir(storage_path("app/private/satis/tenant/"));
+        $config->outputDir(storage_path('app/private/satis/tenant/'));
         Package::query()
             ->orderBy('name')
             ->get()
@@ -70,7 +70,7 @@ class SyncTenantPackages implements ShouldQueue
         );
 
         $config->saveAs(
-            storage_path("app/private/satis/tenant/satis.json")
+            storage_path('app/private/satis/tenant/satis.json')
         );
 
         $composer_path = storage_path('app/private/composer');

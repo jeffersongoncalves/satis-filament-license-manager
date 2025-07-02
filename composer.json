@@ -13,6 +13,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "andreiio/blade-iconoir": "^4.7",
         "composer/satis": "3.0.x-dev",
         "dvarilek/filament-table-select": "^2.0",
         "filament/filament": "^3.3",
@@ -72,13 +73,13 @@
             "@php artisan ide-helper:generate -q",
             "@php artisan ide-helper:meta -q",
             "@php artisan ide-helper:model --write --reset -q -n",
-            "./vendor/bin/pint --config=pint.json -q"
+            "@php ./vendor/bin/pint --config=pint.json -q"
         ],
         "pint": [
-            "./vendor/bin/pint --config=pint.json -q"
+            "@php ./vendor/bin/pint --config=pint.json -q"
         ],
         "phpstan": [
-            "./vendor/bin/phpstan"
+            "@php ./vendor/bin/phpstan"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",

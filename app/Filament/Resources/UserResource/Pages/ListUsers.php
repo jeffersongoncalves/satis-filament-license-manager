@@ -5,7 +5,6 @@ namespace App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Support\Enums\MaxWidth;
 
 class ListUsers extends ListRecords
 {

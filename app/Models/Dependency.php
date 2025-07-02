@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\DependencyType;
 use App\Observers\DependencyObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property array<array-key, mixed>|null $versions
+ * @property string|null $type
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\DependencyPackageRelease> $packageReleaseRequires
  * @property-read int|null $package_release_requires_count
  * @property-read \App\Models\DependencyPackageRelease|null $pivot
@@ -27,6 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereVersion($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereVersions($value)
@@ -39,6 +42,7 @@ class Dependency extends Model
     protected $fillable = [
         'name',
         'versions',
+        'type',
     ];
 
     public function packageReleaseRequires(): HasMany
@@ -55,6 +59,7 @@ class Dependency extends Model
     {
         return [
             'versions' => 'array',
+            'type' => DependencyType::class,
         ];
     }
 }

@@ -19,21 +19,27 @@ class PackageReleasesRelationManager extends RelationManager
                 Infolists\Components\Section::make()
                     ->schema([
                         Infolists\Components\TextEntry::make('package.name')
+                            ->label(__('package_releases.infolist.package.name'))
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('version')
+                            ->label(__('package_releases.infolist.version'))
                             ->badge()
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('time')
+                            ->label(__('package_releases.infolist.time'))
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('type')
+                            ->label(__('package_releases.infolist.type'))
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('description')
+                            ->label(__('package_releases.infolist.description'))
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('homepage')
+                            ->label(__('package_releases.infolist.homepage'))
                             ->columnSpanFull(),
                     ]),
                 Infolists\Components\Section::make()
-                    ->heading(__('Dependencies'))
+                    ->heading(__('package_releases.infolist.section.dependencies'))
                     ->schema([
                         Infolists\Components\TextEntry::make('dependencies.name')
                             ->hiddenLabel()
@@ -52,31 +58,39 @@ class PackageReleasesRelationManager extends RelationManager
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('version')
+                    ->label(__('package_releases.table.version'))
                     ->badge()
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('dependencies_count')
+                    ->label(__('package_releases.table.dependencies_count'))
                     ->counts('dependencies'),
                 Tables\Columns\TextColumn::make('time')
+                    ->label(__('package_releases.table.time'))
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('type')
+                    ->label(__('package_releases.table.type'))
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('description')
+                    ->label(__('package_releases.table.description'))
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('homepage')
+                    ->label(__('package_releases.table.homepage'))
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('package_releases.table.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('package_releases.table.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

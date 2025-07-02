@@ -34,6 +34,7 @@ class PackageObserver
     {
         try {
             Cache::delete('packages_count');
+            Cache::delete('package_releases_count');
         } catch (InvalidArgumentException) {
         }
     }

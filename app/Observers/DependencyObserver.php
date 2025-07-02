@@ -2,12 +2,26 @@
 
 namespace App\Observers;
 
+use App\Enums\DependencyType;
 use App\Models\Dependency;
+use App\Models\Packagist;
 use Illuminate\Support\Facades\Cache;
 use Psr\SimpleCache\InvalidArgumentException;
 
 class DependencyObserver
 {
+    /**
+     * Handle the Dependency "creating" event.
+     */
+    public function creating(Dependency $dependency): void
+    {
+        if (str($dependency->name)->contains('/')) {
+            $dependency->setAttribute('type', Packagist::getDependencyType($dependency->name));
+        } else {
+            $dependency->setAttribute('type', DependencyType::Public);
+        }
+    }
+
     /**
      * Handle the Dependency "created" event.
      */

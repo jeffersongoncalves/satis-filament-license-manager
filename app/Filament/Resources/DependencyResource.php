@@ -34,27 +34,27 @@ class DependencyResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('Dependency');
+        return __('dependencies.label');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('Dependencies');
+        return __('dependencies.plural');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('Dependencies');
+        return __('dependencies.navigation.label');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return __('Package');
+        return __('dependencies.navigation.group');
     }
 
     public static function getNavigationBadge(): ?string
     {
-        return (string)Cache::rememberForever('dependencies_count', fn() => Dependency::query()->count());
+        return (string) Cache::rememberForever('dependencies_count', fn () => Dependency::query()->count());
     }
 
     public static function infolist(Infolist $infolist): Infolist
@@ -64,8 +64,14 @@ class DependencyResource extends Resource
                 Infolists\Components\Section::make()
                     ->schema([
                         Infolists\Components\TextEntry::make('name')
+                            ->label(__('dependencies.infolist.name'))
+                            ->columnSpanFull(),
+                        Infolists\Components\TextEntry::make('type')
+                            ->label(__('dependencies.infolist.type'))
+                            ->badge()
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('versions')
+                            ->label(__('dependencies.infolist.versions'))
                             ->badge()
                             ->columnSpanFull(),
                     ]),
@@ -77,17 +83,25 @@ class DependencyResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label(__('dependencies.table.name'))
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('type')
+                    ->label(__('dependencies.table.type'))
+                    ->badge(),
                 Tables\Columns\TextColumn::make('versions')
+                    ->label(__('dependencies.table.versions'))
                     ->badge(),
                 Tables\Columns\TextColumn::make('package_releases_count')
+                    ->label(__('dependencies.table.package_releases_count'))
                     ->counts('packageReleases'),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('dependencies.table.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('dependencies.table.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
