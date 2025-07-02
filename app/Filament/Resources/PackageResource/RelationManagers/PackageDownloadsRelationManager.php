@@ -7,6 +7,7 @@ use Filament\Infolists\Infolist;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class PackageDownloadsRelationManager extends RelationManager
 {
@@ -49,5 +50,10 @@ class PackageDownloadsRelationManager extends RelationManager
             ->actions([
                 Tables\Actions\ViewAction::make(),
             ]);
+    }
+
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return __('package_downloads.plural');
     }
 }
