@@ -192,7 +192,7 @@ class PackageResource extends Resource
                     ->relationship('packageRelease')
                     ->schema([
                         Infolists\Components\Section::make()
-                            ->columnSpan(1)
+                            ->columnSpanFull()
                             ->label(__('packages.infolist.section.package_release'))
                             ->schema([
                                 Infolists\Components\TextEntry::make('version')
