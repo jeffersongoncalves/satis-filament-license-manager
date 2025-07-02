@@ -14,32 +14,34 @@ class PackageReleasesRelationManager extends RelationManager
 {
     protected static string $relationship = 'packageReleases';
 
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return __('package_releases.plural');
+    }
+
     public function infolist(Infolist $infolist): Infolist
     {
         return $infolist
             ->schema([
-                Infolists\Components\Section::make()
-                    ->schema([
-                        Infolists\Components\TextEntry::make('package.name')
-                            ->label(__('package_releases.infolist.package.name'))
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('version')
-                            ->label(__('package_releases.infolist.version'))
-                            ->badge()
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('time')
-                            ->label(__('package_releases.infolist.time'))
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('type')
-                            ->label(__('package_releases.infolist.type'))
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('description')
-                            ->label(__('package_releases.infolist.description'))
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('homepage')
-                            ->label(__('package_releases.infolist.homepage'))
-                            ->columnSpanFull(),
-                    ]),
+                Infolists\Components\TextEntry::make('package.name')
+                    ->label(__('package_releases.infolist.package.name'))
+                    ->columnSpanFull(),
+                Infolists\Components\TextEntry::make('version')
+                    ->label(__('package_releases.infolist.version'))
+                    ->badge()
+                    ->columnSpanFull(),
+                Infolists\Components\TextEntry::make('time')
+                    ->label(__('package_releases.infolist.time'))
+                    ->columnSpanFull(),
+                Infolists\Components\TextEntry::make('type')
+                    ->label(__('package_releases.infolist.type'))
+                    ->columnSpanFull(),
+                Infolists\Components\TextEntry::make('description')
+                    ->label(__('package_releases.infolist.description'))
+                    ->columnSpanFull(),
+                Infolists\Components\TextEntry::make('homepage')
+                    ->label(__('package_releases.infolist.homepage'))
+                    ->columnSpanFull(),
                 Infolists\Components\RepeatableEntry::make('dependencies')
                     ->label(__('package_releases.infolist.section.dependencies'))
                     ->schema([
@@ -107,10 +109,5 @@ class PackageReleasesRelationManager extends RelationManager
                     ->slideOver()
                     ->modalWidth(MaxWidth::Large),
             ]);
-    }
-
-    public static function getTitle(Model $ownerRecord, string $pageClass): string
-    {
-        return __('package_releases.plural');
     }
 }
