@@ -68,6 +68,8 @@ class AdminPanelProvider extends PanelProvider
             ->navigationGroups([
                 __('navigation.package'),
                 __('navigation.package_info'),
+                __('navigation.management'),
+                __('navigation.setting'),
             ])
             ->plugins([
                 OneTimeOperationsPlugin::make(),
