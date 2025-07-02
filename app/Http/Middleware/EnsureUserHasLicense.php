@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\DependencyType;
+use App\Models\Dependency;
 use App\Models\Package;
 use Closure;
 use Illuminate\Http\Request;
@@ -27,9 +29,10 @@ class EnsureUserHasLicense
         if (! Package::query()->where('name', $name)->exists()) {
             abort(404);
         }
-
-        if (! $token->packages()->where('name', $name)->exists()) {
-            abort(403);
+        if (! Dependency::query()->where('type', DependencyType::Private)->where('name', $name)->exists()) {
+            if (! $token->packages()->where('name', $name)->exists()) {
+                abort(403);
+            }
         }
 
         return $next($request);
