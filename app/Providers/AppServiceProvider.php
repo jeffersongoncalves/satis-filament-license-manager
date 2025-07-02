@@ -34,7 +34,19 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->configureAuthToken();
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-            $switch->locales(['en','es','pt_BR']);
+            $switch
+                ->locales([
+                    'en',
+                    'es',
+                    'pt_BR',
+                ])
+                ->flags([
+                    'en' => asset('assets/flags/en.svg'),
+                    'es' => asset('assets/flags/es.svg'),
+                    'pt_BR' => asset('assets/flags/br.svg'),
+                ])
+                ->flagsOnly()
+                ->circular();
         });
     }
 
