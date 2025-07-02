@@ -20,7 +20,7 @@ class TokenResource extends Resource
 {
     protected static ?string $model = Token::class;
 
-    protected static ?string $navigationIcon = 'icon-token';
+    protected static ?string $navigationIcon = 'tabler-key';
 
     protected static bool $isGloballySearchable = true;
 

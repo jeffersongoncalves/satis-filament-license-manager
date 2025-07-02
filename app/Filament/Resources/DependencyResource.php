@@ -16,7 +16,7 @@ class DependencyResource extends Resource
 {
     protected static ?string $model = Dependency::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'tabler-brand-pnpm';
 
     protected static bool $isGloballySearchable = true;
 

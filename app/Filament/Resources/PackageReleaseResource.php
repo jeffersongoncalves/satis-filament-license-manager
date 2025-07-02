@@ -15,7 +15,7 @@ class PackageReleaseResource extends Resource
 {
     protected static ?string $model = PackageRelease::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'tabler-package-import';
 
     protected static bool $isGloballySearchable = true;
 
