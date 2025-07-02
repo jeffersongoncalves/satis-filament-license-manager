@@ -55,7 +55,7 @@ class PackageReleaseResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) Cache::rememberForever('package_releases_count', fn () => PackageRelease::query()->count());
+        return (string)Cache::rememberForever('package_releases_count', fn() => PackageRelease::query()->count());
     }
 
     public static function infolist(Infolist $infolist): Infolist
@@ -90,7 +90,8 @@ class PackageReleaseResource extends Resource
                         Infolists\Components\TextEntry::make('dependencies.name')
                             ->hiddenLabel()
                             ->listWithLineBreaks()
-                            ->bulleted(),
+                            ->bulleted()
+                            ->suffix(fn($state) => $state->pivot->version),
                     ]),
             ]);
     }
