@@ -199,6 +199,7 @@ class PackageResource extends Resource
                     ->schema([
                         Infolists\Components\Section::make()
                             ->label(__('packages.infolist.section.package_release'))
+                            ->columnSpan(1)
                             ->schema([
                                 Infolists\Components\TextEntry::make('version')
                                     ->label(__('package_releases.infolist.version'))
@@ -229,7 +230,8 @@ class PackageResource extends Resource
                                     ->hiddenLabel()
                                     ->badge(),
                             ])
-                            ->columns(),
+                            ->columns()
+                            ->contained(false),
                     ]),
             ]);
     }
