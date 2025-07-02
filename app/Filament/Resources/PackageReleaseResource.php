@@ -84,15 +84,13 @@ class PackageReleaseResource extends Resource
                             ->label(__('package_releases.infolist.homepage'))
                             ->columnSpanFull(),
                     ]),
-                Infolists\Components\Section::make()
-                    ->heading(__('package_releases.infolist.section.dependencies'))
+                Infolists\Components\RepeatableEntry::make('dependencies')
+                    ->label(__('package_releases.infolist.section.dependencies'))
                     ->schema([
-                        Infolists\Components\TextEntry::make('dependencies.name')
-                            ->hiddenLabel()
-                            ->listWithLineBreaks()
-                            ->bulleted()
-                            ->suffix(fn($state) => $state->pivot->version),
-                    ]),
+                        Infolists\Components\TextEntry::make('name'),
+                        Infolists\Components\TextEntry::make('pivot.version'),
+                    ])
+                    ->columns(),
             ]);
     }
 
