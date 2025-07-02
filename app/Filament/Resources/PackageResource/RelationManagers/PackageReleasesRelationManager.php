@@ -43,11 +43,12 @@ class PackageReleasesRelationManager extends RelationManager
                     ->label(__('package_releases.infolist.section.dependencies'))
                     ->schema([
                         Infolists\Components\TextEntry::make('name')
-                            ->label(__('dependencies.infolist.name')),
+                            ->hiddenLabel(),
                         Infolists\Components\TextEntry::make('pivot.version')
-                            ->label(__('package_releases.infolist.version'))
+                            ->hiddenLabel()
                             ->badge(),
                     ])
+                    ->contained(false)
                     ->columns()
                     ->columnSpanFull(),
             ]);
