@@ -72,7 +72,7 @@ class TokenResource extends Resource
                     ->maxLength(255),
                 Forms\Components\Select::make('packages')
                     ->label(__('tokens.form.packages'))
-                    ->relationship('packages', 'name', fn (Builder $query) => $query->whereBelongsTo(Filament::getTenant())->orderBy('name'))
+                    ->relationship('packages', 'name', fn (Builder $query) => $query->orderBy('name'))
                     ->multiple(),
             ]);
     }
