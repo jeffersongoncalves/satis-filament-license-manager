@@ -2,6 +2,8 @@
 
 namespace App\Actions;
 
+use App\Enums\DependencyType;
+use App\Jobs\AddDependencyDefaultByPackage;
 use App\Models\Dependency;
 use App\Models\DependencyPackageRelease;
 use App\Models\Package;
@@ -47,6 +49,11 @@ class ProcessPackageFilename
                         'versions' => $versions->unique()->values()->all(),
                     ]);
                 }
+
+                if ($dependency->type->value === DependencyType::Private->value) {
+                    AddDependencyDefaultByPackage::dispatch($package, $require);
+                }
+
                 DependencyPackageRelease::firstOrCreate([
                     'package_id' => $package->id,
                     'package_release_id' => $packageRelease->id,
