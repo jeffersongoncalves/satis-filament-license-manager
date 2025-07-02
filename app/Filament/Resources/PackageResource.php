@@ -226,7 +226,7 @@ class PackageResource extends Resource
                             ->columnSpan(1)
                             ->schema([
                                 Infolists\Components\RepeatableEntry::make('dependencies')
-                                    ->label(__('package_releases.infolist.section.dependencies'))
+                                    ->hiddenLabel()
                                     ->schema([
                                         Infolists\Components\TextEntry::make('name')
                                             ->hiddenLabel(),
