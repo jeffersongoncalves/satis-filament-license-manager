@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7254d397bd5c6e90fb98ce94cadfb479",
+    "content-hash": "73bbce9a3adf54e6c3f81a7855a97eaa",
     "packages": [
         {
             "name": "andreiio/blade-iconoir",
@@ -826,19 +826,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/satis.git",
-                "reference": "2d0d7bf08bed6b5f57dae0f7b93d7c585112ab65"
+                "reference": "b9e260b0acd5a13d1c4f4402243022000e3013f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/satis/zipball/2d0d7bf08bed6b5f57dae0f7b93d7c585112ab65",
-                "reference": "2d0d7bf08bed6b5f57dae0f7b93d7c585112ab65",
+                "url": "https://api.github.com/repos/composer/satis/zipball/b9e260b0acd5a13d1c4f4402243022000e3013f3",
+                "reference": "b9e260b0acd5a13d1c4f4402243022000e3013f3",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^2.3.0",
                 "composer/composer": "^2.8.9",
                 "ext-zip": "*",
-                "symfony/console": "^7.3.0",
+                "symfony/console": "^7.3.1",
                 "twig/html-extra": "^3.21.0",
                 "twig/twig": "^3.21.1"
             },
@@ -905,7 +905,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2025-06-02T11:53:49+00:00"
+            "time": "2025-07-01T07:23:30+00:00"
         },
         {
             "name": "composer/semver",
@@ -1700,126 +1700,6 @@
                 }
             ],
             "time": "2024-10-09T13:47:03+00:00"
-        },
-        {
-            "name": "dvarilek/filament-table-select",
-            "version": "v2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dvarilek/filament-table-select.git",
-                "reference": "5c39cea4e7e47f2026d38e9a3937d28e81b5628c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dvarilek/filament-table-select/zipball/5c39cea4e7e47f2026d38e9a3937d28e81b5628c",
-                "reference": "5c39cea4e7e47f2026d38e9a3937d28e81b5628c",
-                "shasum": ""
-            },
-            "require": {
-                "dvarilek/livewire-closure-synthesizer": "^1.1",
-                "filament/filament": "^3.0",
-                "php": "^8.2|^8.3|^8.4",
-                "spatie/laravel-package-tools": "^1.18"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^8.0|^9.0",
-                "pestphp/pest": "^2.31|^3.0.0",
-                "pestphp/pest-plugin-livewire": "^3.0",
-                "phpstan/phpstan": "^2.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Dvarilek\\FilamentTableSelect\\FilamentTableSelectServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Dvarilek\\FilamentTableSelect\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "David Vařílek",
-                    "email": "davan@outlook.cz"
-                }
-            ],
-            "description": "Laravel Filament form component for selecting related records with a table.",
-            "keywords": [
-                "filament",
-                "select",
-                "table"
-            ],
-            "support": {
-                "issues": "https://github.com/dvarilek/filament-table-select/issues",
-                "source": "https://github.com/dvarilek/filament-table-select/tree/2.0.1"
-            },
-            "time": "2025-06-08T20:40:50+00:00"
-        },
-        {
-            "name": "dvarilek/livewire-closure-synthesizer",
-            "version": "v1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dvarilek/livewire-closure-synthesizer.git",
-                "reference": "1f4fe8c82c401990929c2d01a3268bc97fb5c593"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dvarilek/livewire-closure-synthesizer/zipball/1f4fe8c82c401990929c2d01a3268bc97fb5c593",
-                "reference": "1f4fe8c82c401990929c2d01a3268bc97fb5c593",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/serializable-closure": "^1.1.0 || ^2.0.0",
-                "livewire/livewire": "^3.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^10.2",
-                "pestphp/pest": "^2.31 || ^3.0.0",
-                "phpstan/phpstan": "^2.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Dvarilek\\ClosureSynthesizer\\ClosureSynthesizerServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Dvarilek\\ClosureSynthesizer\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "David Vařílek",
-                    "email": "davan@outlook.cz"
-                }
-            ],
-            "description": "A Closure Synthesizer for Laravel Livewire",
-            "keywords": [
-                "closure",
-                "livewire",
-                "synth",
-                "synthesizer"
-            ],
-            "support": {
-                "issues": "https://github.com/dvarilek/livewire-closure-synthesizer/issues",
-                "source": "https://github.com/dvarilek/livewire-closure-synthesizer/tree/v1.1.0"
-            },
-            "time": "2025-04-19T09:50:07+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -2934,16 +2814,16 @@
         },
         {
             "name": "jeffersongoncalves/filament-one-time-operations",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jeffersongoncalves/filament-one-time-operations.git",
-                "reference": "c4cf049c0c635102765cc62d90a318343b47359b"
+                "reference": "8f665d22dcf9e7b45c8017f1b2fe1da9dfe38911"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jeffersongoncalves/filament-one-time-operations/zipball/c4cf049c0c635102765cc62d90a318343b47359b",
-                "reference": "c4cf049c0c635102765cc62d90a318343b47359b",
+                "url": "https://api.github.com/repos/jeffersongoncalves/filament-one-time-operations/zipball/8f665d22dcf9e7b45c8017f1b2fe1da9dfe38911",
+                "reference": "8f665d22dcf9e7b45c8017f1b2fe1da9dfe38911",
                 "shasum": ""
             },
             "require": {
@@ -2991,7 +2871,7 @@
             ],
             "support": {
                 "issues": "https://github.com/jeffersongoncalves/filament-one-time-operations/issues",
-                "source": "https://github.com/jeffersongoncalves/filament-one-time-operations/tree/1.1.1"
+                "source": "https://github.com/jeffersongoncalves/filament-one-time-operations/tree/1.1.2"
             },
             "funding": [
                 {
@@ -2999,7 +2879,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-28T00:39:50+00:00"
+            "time": "2025-06-19T20:51:33+00:00"
         },
         {
             "name": "justinrainbow/json-schema",

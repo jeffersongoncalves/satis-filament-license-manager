@@ -15,7 +15,6 @@
         "php": "^8.2",
         "andreiio/blade-iconoir": "^4.7",
         "composer/satis": "3.0.x-dev",
-        "dvarilek/filament-table-select": "^2.0",
         "filament/filament": "^3.3",
         "jeffersongoncalves/filament-logo": "^1.0",
         "jeffersongoncalves/filament-one-time-operations": "^1.1",
