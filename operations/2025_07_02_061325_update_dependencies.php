@@ -5,7 +5,8 @@ use App\Models\Dependency;
 use App\Models\Packagist;
 use TimoKoerber\LaravelOneTimeOperations\OneTimeOperation;
 
-return new class extends OneTimeOperation {
+return new class extends OneTimeOperation
+{
     /**
      * Determine if the operation is being processed asynchronously.
      */

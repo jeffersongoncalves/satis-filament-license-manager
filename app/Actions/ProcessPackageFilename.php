@@ -51,6 +51,7 @@ class ProcessPackageFilename
                     'package_id' => $package->id,
                     'package_release_id' => $packageRelease->id,
                     'dependency_id' => $dependency->id,
+                    'version' => $version,
                 ]);
             }
         }

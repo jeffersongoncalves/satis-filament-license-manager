@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @property int $dependency_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $version
  * @property-read \App\Models\Dependency $dependency
  * @property-read \App\Models\Package $package
  * @property-read \App\Models\PackageRelease $packageRelease
@@ -25,6 +26,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease wherePackageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease wherePackageReleaseId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DependencyPackageRelease whereVersion($value)
  *
  * @mixin \Eloquent
  */
@@ -36,6 +38,7 @@ class DependencyPackageRelease extends Pivot
         'package_id',
         'package_release_id',
         'dependency_id',
+        'version',
     ];
 
     public function package(): BelongsTo
