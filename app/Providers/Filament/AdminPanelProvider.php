@@ -8,6 +8,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -66,10 +67,10 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->navigationGroups([
-                __('navigation.package'),
-                __('navigation.package_info'),
-                __('navigation.management'),
-                __('navigation.setting'),
+                NavigationGroup::make(__('navigation.package')),
+                NavigationGroup::make(__('navigation.package_info')),
+                NavigationGroup::make(__('navigation.management')),
+                NavigationGroup::make(__('navigation.setting')),
             ])
             ->plugins([
                 OneTimeOperationsPlugin::make(),
