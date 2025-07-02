@@ -72,7 +72,7 @@ class Package extends Model
 
     public function packageRelease(): HasOne
     {
-        return $this->hasOne(PackageRelease::class)->latest('time');
+        return $this->hasOne(PackageRelease::class)->latest('version');
     }
 
     public function packageDownloads(): HasMany
