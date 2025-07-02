@@ -96,14 +96,16 @@ class PackageResource extends Resource
                             }
                         },
                     )
-                    ->required(),
+                    ->required()
+                    ->disabled(fn ($context) => $context === 'edit'),
                 Forms\Components\ToggleButtons::make('type')
                     ->hidden(fn ($context): bool => $context === 'edit')
                     ->hiddenLabel()
                     ->live()
                     ->options(PackageType::class)
                     ->default(PackageType::Composer)
-                    ->required(),
+                    ->required()
+                    ->disabled(fn ($context) => $context === 'edit'),
                 Forms\Components\Fieldset::make()
                     ->columns()
                     ->schema([
