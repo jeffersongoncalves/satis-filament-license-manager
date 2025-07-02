@@ -59,7 +59,7 @@ class PackageReleasesRelationManager extends RelationManager
     {
         return $table
             ->heading(__('package_releases.plural'))
-            ->recordTitleAttribute('version')
+            ->recordTitleAttribute('name')
             ->columns([
                 Tables\Columns\TextColumn::make('version')
                     ->label(__('package_releases.table.version'))
