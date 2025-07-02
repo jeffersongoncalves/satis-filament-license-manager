@@ -45,8 +45,7 @@ class AppServiceProvider extends ServiceProvider
                     'es' => asset('assets/flags/es.svg'),
                     'pt_BR' => asset('assets/flags/br.svg'),
                 ])
-                ->flagsOnly()
-                ->circular();
+                ->flagsOnly();
         });
     }
 
