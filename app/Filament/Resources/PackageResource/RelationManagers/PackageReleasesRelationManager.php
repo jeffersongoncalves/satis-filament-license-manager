@@ -7,7 +7,6 @@ use Filament\Infolists\Infolist;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Contracts\Support\Htmlable;
 
 class PackageReleasesRelationManager extends RelationManager
 {
@@ -21,6 +20,7 @@ class PackageReleasesRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
+            ->heading(__('package_releases.plural'))
             ->recordTitleAttribute('version')
             ->columns([
                 Tables\Columns\TextColumn::make('version')
@@ -67,10 +67,5 @@ class PackageReleasesRelationManager extends RelationManager
             ->actions([
                 Tables\Actions\ViewAction::make(),
             ]);
-    }
-
-    protected function getTableHeading(): string|Htmlable|null
-    {
-        return __('package_releases.plural');
     }
 }
