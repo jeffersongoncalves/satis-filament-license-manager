@@ -24,6 +24,8 @@ class UserResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    protected static ?int $navigationSort = 20;
+
     public static function getGloballySearchableAttributes(): array
     {
         return ['name', 'email'];

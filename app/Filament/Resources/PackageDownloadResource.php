@@ -21,7 +21,7 @@ class PackageDownloadResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'version';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 12;
 
     public static function getGloballySearchableAttributes(): array
     {
