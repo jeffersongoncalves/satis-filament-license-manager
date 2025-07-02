@@ -198,7 +198,6 @@ class PackageResource extends Resource
                     ->relationship('packageRelease')
                     ->schema([
                         Infolists\Components\Section::make()
-                            ->columnSpanFull()
                             ->label(__('packages.infolist.section.package_release'))
                             ->schema([
                                 Infolists\Components\TextEntry::make('version')
@@ -225,14 +224,12 @@ class PackageResource extends Resource
                             ->label(__('package_releases.infolist.section.dependencies'))
                             ->schema([
                                 Infolists\Components\TextEntry::make('name')
-                                    ->label(__('dependencies.infolist.name')),
+                                    ->hiddenLabel(),
                                 Infolists\Components\TextEntry::make('pivot.version')
-                                    ->label(__('package_releases.infolist.version'))
+                                    ->hiddenLabel()
                                     ->badge(),
                             ])
-                            ->columns()
-                            ->grid()
-                            ->columnSpanFull(),
+                            ->columns(),
                     ]),
             ]);
     }
