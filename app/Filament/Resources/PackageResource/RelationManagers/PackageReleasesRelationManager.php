@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\PackageResource\RelationManagers;
 
-use Filament\Infolists;
+use App\Filament\Resources\PackageReleaseResource;
 use Filament\Infolists\Infolist;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -14,33 +14,7 @@ class PackageReleasesRelationManager extends RelationManager
 
     public function infolist(Infolist $infolist): Infolist
     {
-        return $infolist
-            ->schema([
-                Infolists\Components\Section::make()
-                    ->schema([
-                        Infolists\Components\TextEntry::make('package.name')
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('version')
-                            ->badge()
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('time')
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('type')
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('description')
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('homepage')
-                            ->columnSpanFull(),
-                    ]),
-                Infolists\Components\Section::make()
-                    ->heading(__('Dependencies'))
-                    ->schema([
-                        Infolists\Components\TextEntry::make('dependencies.name')
-                            ->hiddenLabel()
-                            ->listWithLineBreaks()
-                            ->bulleted(),
-                    ]),
-            ]);
+        return PackageReleaseResource::infolist($infolist);
     }
 
     public function table(Table $table): Table
@@ -49,31 +23,39 @@ class PackageReleasesRelationManager extends RelationManager
             ->recordTitleAttribute('version')
             ->columns([
                 Tables\Columns\TextColumn::make('version')
+                    ->label(__('package_releases.table.version'))
                     ->badge()
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('dependencies_count')
+                    ->label(__('package_releases.table.dependencies_count'))
                     ->counts('dependencies'),
                 Tables\Columns\TextColumn::make('time')
+                    ->label(__('package_releases.table.time'))
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('type')
+                    ->label(__('package_releases.table.type'))
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('description')
+                    ->label(__('package_releases.table.description'))
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('homepage')
+                    ->label(__('package_releases.table.homepage'))
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('package_releases.table.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('package_releases.table.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

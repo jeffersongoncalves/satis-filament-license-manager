@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\DependencyResource\RelationManagers;
 
-use Filament\Infolists;
+use App\Filament\Resources\PackageReleaseResource;
 use Filament\Infolists\Infolist;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -14,39 +14,7 @@ class PackageReleasesRelationManager extends RelationManager
 
     public function infolist(Infolist $infolist): Infolist
     {
-        return $infolist
-            ->schema([
-                Infolists\Components\Section::make()
-                    ->schema([
-                        Infolists\Components\TextEntry::make('package.name')
-                            ->label(__('package_releases.infolist.package.name'))
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('version')
-                            ->label(__('package_releases.infolist.version'))
-                            ->badge()
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('time')
-                            ->label(__('package_releases.infolist.time'))
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('type')
-                            ->label(__('package_releases.infolist.type'))
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('description')
-                            ->label(__('package_releases.infolist.description'))
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('homepage')
-                            ->label(__('package_releases.infolist.homepage'))
-                            ->columnSpanFull(),
-                    ]),
-                Infolists\Components\Section::make()
-                    ->heading(__('package_releases.infolist.section.dependencies'))
-                    ->schema([
-                        Infolists\Components\TextEntry::make('dependencies.name')
-                            ->hiddenLabel()
-                            ->listWithLineBreaks()
-                            ->bulleted(),
-                    ]),
-            ]);
+        return PackageReleaseResource::infolist($infolist);
     }
 
     public function table(Table $table): Table

@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\PackageResource\RelationManagers;
 
-use Filament\Infolists;
+use App\Filament\Resources\PackageDownloadResource;
 use Filament\Infolists\Infolist;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -14,23 +14,7 @@ class PackageDownloadsRelationManager extends RelationManager
 
     public function infolist(Infolist $infolist): Infolist
     {
-        return $infolist
-            ->schema([
-                Infolists\Components\Section::make()
-                    ->schema([
-                        Infolists\Components\TextEntry::make('package.name')
-                            ->label(__('package_downloads.infolist.package.name'))
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('version')
-                            ->label(__('package_downloads.infolist.version'))
-                            ->badge()
-                            ->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('downloads')
-                            ->label(__('package_downloads.infolist.downloads'))
-                            ->badge()
-                            ->columnSpanFull(),
-                    ]),
-            ]);
+        return PackageDownloadResource::infolist($infolist);
     }
 
     public function table(Table $table): Table
