@@ -201,33 +201,31 @@ class PackageResource extends Resource
                                     ->columnSpanFull(),
                                 Infolists\Components\TextEntry::make('time')
                                     ->label(__('package_releases.infolist.time'))
-                                    ->columnSpanFull(),
+                                    ->columnSpanFull()
+                                    ->hidden(fn ($state) => blank($state)),
                                 Infolists\Components\TextEntry::make('type')
                                     ->label(__('package_releases.infolist.type'))
                                     ->columnSpanFull(),
                                 Infolists\Components\TextEntry::make('description')
                                     ->label(__('package_releases.infolist.description'))
-                                    ->columnSpanFull(),
+                                    ->columnSpanFull()
+                                    ->hidden(fn ($state) => blank($state)),
                                 Infolists\Components\TextEntry::make('homepage')
                                     ->label(__('package_releases.infolist.homepage'))
-                                    ->columnSpanFull(),
+                                    ->columnSpanFull()
+                                    ->hidden(fn ($state) => blank($state)),
                             ]),
-                        Infolists\Components\Section::make()
-                            ->relationship('dependencies')
-                            ->columnSpan(1)
-                            ->columns()
-                            ->label(__('packages.infolist.section.dependencies'))
+                        Infolists\Components\RepeatableEntry::make('dependencies')
+                            ->label(__('package_releases.infolist.section.dependencies'))
                             ->schema([
                                 Infolists\Components\TextEntry::make('name')
-                                    ->hiddenLabel()
-                                    ->listWithLineBreaks()
-                                    ->bulleted(),
-                                Infolists\Components\TextEntry::make('version')
-                                    ->badge()
-                                    ->hiddenLabel()
-                                    ->listWithLineBreaks()
-                                    ->bulleted(),
-                            ]),
+                                    ->label(__('dependencies.infolist.name')),
+                                Infolists\Components\TextEntry::make('pivot.version')
+                                    ->label(__('package_releases.infolist.version')),
+                            ])
+                            ->columns()
+                            ->grid()
+                            ->columnSpanFull(),
                     ]),
             ]);
     }

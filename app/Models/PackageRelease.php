@@ -75,6 +75,6 @@ class PackageRelease extends Model
 
     protected function name(): Attribute
     {
-        return Attribute::get(fn(): string => $this->package->name . ' - ' . $this->version);
+        return Attribute::get(fn (): string => $this->package->name.' - '.$this->version);
     }
 }

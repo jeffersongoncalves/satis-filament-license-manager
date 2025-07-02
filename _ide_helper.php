@@ -24383,42 +24383,6 @@ namespace Livewire\Features\SupportTesting {
         /**
          * 
          *
-         * @see \Dvarilek\FilamentTableSelect\Testing\TestsTableSelect::assertSelectionModalContains()
-         * @param array|string $content
-         * @param array|string $component
-         * @param array|string $name
-         * @param array $data
-         * @param array $arguments
-         * @param string $formName
-         * @return static 
-         * @static 
-         */
-        public static function assertSelectionModalContains($content, $component = 'products', $name = 'tableSelectionAction', $data = [], $arguments = [], $formName = 'form')
-        {
-            return \Livewire\Features\SupportTesting\Testable::assertSelectionModalContains($content, $component, $name, $data, $arguments, $formName);
-        }
-
-        /**
-         * 
-         *
-         * @see \Dvarilek\FilamentTableSelect\Testing\TestsTableSelect::assertSelectionModalDoesNotContains()
-         * @param array|string $content
-         * @param array|string $component
-         * @param array|string $name
-         * @param array $data
-         * @param array $arguments
-         * @param string $formName
-         * @return static 
-         * @static 
-         */
-        public static function assertSelectionModalDoesNotContains($content, $component = 'products', $name = 'tableSelectionAction', $data = [], $arguments = [], $formName = 'form')
-        {
-            return \Livewire\Features\SupportTesting\Testable::assertSelectionModalDoesNotContains($content, $component, $name, $data, $arguments, $formName);
-        }
-
-        /**
-         * 
-         *
          * @see \Filament\Actions\Testing\TestsActions::mountAction()
          * @param array|string $name
          * @param array $arguments
