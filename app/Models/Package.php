@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $password
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $composer_command
  * @property-read string $folder
  * @property-read string $name_provider
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PackageDownload> $packageDownloads
@@ -106,5 +107,10 @@ class Package extends Model
     protected function nameProvider(): Attribute
     {
         return Attribute::get(fn (): string => str($this->name)->replace('/', '~')->toString());
+    }
+
+    protected function composerCommand(): Attribute
+    {
+        return Attribute::get(fn (): string => "composer require {$this->name}");
     }
 }

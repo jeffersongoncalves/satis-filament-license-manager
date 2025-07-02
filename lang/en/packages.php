@@ -47,6 +47,7 @@ return [
         'name' => 'Name',
         'type' => 'Type',
         'url' => 'Url',
+        'composer_command' => 'Composer command',
         'section' => [
             'package_releases' => 'Package Releases',
             'package_release' => 'Package Release',

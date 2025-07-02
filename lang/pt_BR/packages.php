@@ -47,6 +47,7 @@ return [
         'name' => 'Nome',
         'type' => 'Tipo',
         'url' => 'Url',
+        'composer_command' => 'Comando do Composer',
         'section' => [
             'package_releases' => 'Lançamentos de Pacotes',
             'package_release' => 'Lançamento de Pacote',

@@ -187,6 +187,9 @@ class PackageResource extends Resource
                         Infolists\Components\TextEntry::make('url')
                             ->label(__('packages.infolist.url'))
                             ->columnSpanFull(),
+                        Infolists\Components\TextEntry::make('composer_command')
+                            ->label(__('packages.infolist.composer_command'))
+                            ->columnSpanFull(),
                     ]),
                 Infolists\Components\Grid::make()
                     ->relationship('packageRelease')
