@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property array<array-key, mixed>|null $versions
- * @property string|null $type
+ * @property DependencyType|null $type
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\DependencyPackageRelease> $packageReleaseRequires
  * @property-read int|null $package_release_requires_count
  * @property-read \App\Models\DependencyPackageRelease|null $pivot

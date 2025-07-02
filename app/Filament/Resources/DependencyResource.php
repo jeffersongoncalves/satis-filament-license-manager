@@ -22,6 +22,8 @@ class DependencyResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    protected static ?int $navigationSort = 3;
+
     public static function getGloballySearchableAttributes(): array
     {
         return ['name'];

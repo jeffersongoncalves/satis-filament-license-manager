@@ -3,17 +3,16 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TokenResource\Pages;
-use App\Models\Package;
 use App\Models\Token;
-use Dvarilek\FilamentTableSelect\Components\Form\TableSelect;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
-use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Cache;
 
 class TokenResource extends Resource
@@ -25,6 +24,8 @@ class TokenResource extends Resource
     protected static bool $isGloballySearchable = true;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    protected static ?int $navigationSort = 2;
 
     public static function getGloballySearchableAttributes(): array
     {
@@ -38,22 +39,22 @@ class TokenResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('Token');
+        return __('tokens.label');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('Tokens');
+        return __('tokens.plural');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('Tokens');
+        return __('tokens.navigation.label');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return __('Package');
+        return __('tokens.navigation.group');
     }
 
     public static function getNavigationBadge(): ?string
@@ -66,20 +67,13 @@ class TokenResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label(__('tokens.form.name'))
                     ->required()
                     ->maxLength(255),
-                TableSelect::make('packages')
-                    ->relationship('packages', 'name')
-                    ->multiple()
-                    ->optionColor('success')
-                    ->tableLocation(PackageResource::class)
-                    ->maxItems(fn () => Package::query()->count())
-                    ->selectionAction(function (Forms\Components\Actions\Action $action) {
-                        return $action
-                            ->modalHeading(__('Select Packages'))
-                            ->modalWidth(MaxWidth::MaxContent)
-                            ->slideOver(false);
-                    }),
+                Forms\Components\Select::make('packages')
+                    ->label(__('tokens.form.packages'))
+                    ->relationship('packages', 'name', fn (Builder $query) => $query->whereBelongsTo(Filament::getTenant())->orderBy('name'))
+                    ->multiple(),
             ]);
     }
 
@@ -90,27 +84,31 @@ class TokenResource extends Resource
                 Infolists\Components\Section::make()
                     ->schema([
                         Infolists\Components\TextEntry::make('name')
+                            ->label(__('tokens.infolist.name'))
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('token')
+                            ->label(__('tokens.infolist.token'))
                             ->copyable()
-                            ->copyMessage(__('Token copied successfully!'))
+                            ->copyMessage(__('tokens.copy_message.token'))
                             ->copyMessageDuration(1500)
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('composer_command')
+                            ->label(__('tokens.infolist.composer_command'))
                             ->copyable()
-                            ->copyMessage(__('Composer command copied successfully!'))
+                            ->copyMessage(__('tokens.copy_message.composer_command'))
                             ->copyMessageDuration(1500)
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('composer_repository')
-                            ->formatStateUsing(fn ($state) => nl2br($state))
+                            ->label(__('tokens.infolist.composer_repository'))
+                            ->formatStateUsing(fn ($state) => '<pre>'.nl2br($state).'</pre>')
                             ->html()
                             ->copyable()
-                            ->copyMessage(__('Composer repository copied successfully!'))
+                            ->copyMessage(__('tokens.copy_message.composer_repository'))
                             ->copyMessageDuration(1500)
                             ->columnSpanFull(),
                     ]),
                 Infolists\Components\Section::make()
-                    ->heading(__('Packages'))
+                    ->label(__('tokens.infolist.section.packages'))
                     ->schema([
                         Infolists\Components\TextEntry::make('packages.name')
                             ->hiddenLabel()
@@ -125,12 +123,18 @@ class TokenResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label(__('tokens.table.name'))
                     ->searchable(),
+                Tables\Columns\TextColumn::make('packages_count')
+                    ->label(__('tokens.table.packages_count'))
+                    ->counts('packages'),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('tokens.table.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('tokens.table.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
