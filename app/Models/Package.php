@@ -100,7 +100,7 @@ class Package extends Model
 
     protected function folder(): Attribute
     {
-        return Attribute::get(fn (): string => str($this->url)->replace('://', '---')->toString());
+        return Attribute::get(fn (): string => str($this->url)->replace(':', '-')->replace('/', '-')->toString());
     }
 
     protected function nameProvider(): Attribute
