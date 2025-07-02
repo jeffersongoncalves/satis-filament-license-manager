@@ -53,6 +53,17 @@ class SatisConfig implements Stringable
         return $this;
     }
 
+    public function notifyBatch(string $url): static
+    {
+        if (! filter_var($url, FILTER_VALIDATE_URL)) {
+            throw new \InvalidArgumentException("Invalid Notify Batch '{$url}'");
+        }
+
+        $this->config['notify-batch'] = $url;
+
+        return $this;
+    }
+
     public function outputDir(string $dir): static
     {
         $this->config['output-dir'] = $dir;

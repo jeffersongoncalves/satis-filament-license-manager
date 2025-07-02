@@ -47,6 +47,7 @@ class SyncTokenPackages implements ShouldQueue
 
         $config = SatisConfig::make();
         $config->homepage(config('app.url'));
+        $config->notifyBatch(config('app.url').'/api/composer/downloads');
         $config->outputDir(storage_path("app/private/satis/{$this->token->id}/"));
         $this->token
             ->packages()

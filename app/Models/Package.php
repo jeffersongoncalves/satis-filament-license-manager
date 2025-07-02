@@ -22,6 +22,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $folder
  * @property-read string $name_provider
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PackageDownload> $packageDownloads
+ * @property-read int|null $package_downloads_count
  * @property-read \App\Models\PackageRelease|null $packageRelease
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PackageRelease> $packageReleases
  * @property-read int|null $package_releases_count
@@ -70,7 +72,23 @@ class Package extends Model
 
     public function packageRelease(): HasOne
     {
-        return $this->hasOne(PackageRelease::class)->latestOfMany('version');
+        return $this->hasOne(PackageRelease::class)->latest('time');
+    }
+
+    public function packageDownloads(): HasMany
+    {
+        return $this->hasMany(PackageDownload::class);
+    }
+
+    public function downloadComposer(string $version): void
+    {
+        $packageDownload = PackageDownload::firstOrCreate([
+            'package_id' => $this->id,
+            'version' => $version,
+        ], [
+            'downloads' => 0,
+        ]);
+        $packageDownload->increment('downloads');
     }
 
     protected function casts(): array
