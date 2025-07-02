@@ -189,6 +189,9 @@ class PackageResource extends Resource
                             ->columnSpanFull(),
                         Infolists\Components\TextEntry::make('composer_command')
                             ->label(__('packages.infolist.composer_command'))
+                            ->copyable()
+                            ->copyMessage(__('packages.copy_message.composer_command'))
+                            ->copyMessageDuration(1500)
                             ->columnSpanFull(),
                     ]),
                 Infolists\Components\Grid::make()

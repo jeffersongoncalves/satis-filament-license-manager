@@ -54,6 +54,9 @@ return [
             'dependencies' => 'Dependencies',
         ],
     ],
+    'copy_message' => [
+        'composer_command' => 'Composer command copied successfully!',
+    ],
     'table' => [
         'name' => 'Name',
         'package_releases_count' => 'Package Releases',
