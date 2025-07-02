@@ -38,7 +38,7 @@ class FilamentServiceProvider extends ServiceProvider
 
         Actions\Action::configureUsing(function (Actions\Action $action) {
             return $action->translateLabel()
-                ->modalWidth(MaxWidth::Medium)
+                ->modalWidth(MaxWidth::Large)
                 ->closeModalByClickingAway(false);
         });
 
