@@ -87,10 +87,13 @@ class PackageReleaseResource extends Resource
                 Infolists\Components\RepeatableEntry::make('dependencies')
                     ->label(__('package_releases.infolist.section.dependencies'))
                     ->schema([
-                        Infolists\Components\TextEntry::make('name'),
-                        Infolists\Components\TextEntry::make('pivot.version'),
+                        Infolists\Components\TextEntry::make('name')
+                            ->label(__('dependencies.infolist.name')),
+                        Infolists\Components\TextEntry::make('pivot.version')
+                            ->label(__('package_releases.infolist.version')),
                     ])
-                    ->columns(),
+                    ->columns()
+                    ->columnSpanFull(),
             ]);
     }
 

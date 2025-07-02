@@ -67,11 +67,14 @@ class PackageRelease extends Model
 
     public function dependencies(): BelongsToMany
     {
-        return $this->belongsToMany(Dependency::class)->using(DependencyPackageRelease::class)->withTimestamps();
+        return $this->belongsToMany(Dependency::class)
+            ->using(DependencyPackageRelease::class)
+            ->withTimestamps()
+            ->withPivot(['version']);
     }
 
     protected function name(): Attribute
     {
-        return Attribute::get(fn (): string => $this->package->name.' - '.$this->version);
+        return Attribute::get(fn(): string => $this->package->name . ' - ' . $this->version);
     }
 }
