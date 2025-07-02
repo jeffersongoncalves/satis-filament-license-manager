@@ -1,0 +1,15 @@
+### GET packages.json
+GET https://composer.jsg.tec.br/packages.json
+Authorization: Basic {{username}} {{password}}
+
+### GET include/{include}.json
+GET https://composer.jsg.tec.br/include/all$70dae35a6aeb73e102bb9bf373f540d924d749a5.json
+Authorization: Basic {{username}} {{password}}
+
+### GET p2/{vendor}/{package}.json
+GET https://composer.jsg.tec.br/p2/archilex/filament-filter-sets.json
+Authorization: Basic {{username}} {{password}}
+
+### GET archives/{vendor}/{package}/{file}
+GET https://composer.jsg.tec.br/archives/archilex/filament-filter-sets/archilex-filament-filter-sets-8a1b5f137c1f4a5a6a438350ffdd91f642b0115f-zip.zip
+Authorization: Basic {{username}} {{password}}
