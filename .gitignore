@@ -22,5 +22,6 @@ phpstan.neon
 /.nova
 /.vscode
 /.zed
+/.rnd
 *.private.env.json
 *.env.json
