@@ -14,8 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 /**
  * @property int $id
  * @property string $name
- * @property string $username
- * @property string $password
+ * @property string $email
  * @property string $token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -29,12 +28,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Token newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Token query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Token whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Token whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Token whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Token whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Token wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Token whereToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Token whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Token whereUsername($value)
  *
  * @mixin \Eloquent
  */

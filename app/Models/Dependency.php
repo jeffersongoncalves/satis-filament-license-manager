@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property int $id
  * @property string $name
- * @property string $version
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property array<array-key, mixed>|null $versions
@@ -31,7 +30,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereVersion($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Dependency whereVersions($value)
  *
  * @mixin \Eloquent
