@@ -91,7 +91,7 @@
         ],
         "queue": [
             "Composer\\Config::disableProcessTimeout",
-            "npx concurrently -c \"#93c5fd\" \"php artisan queue:listen --tries=1\" --names=queue"
+            "npx concurrently -c \"#93c5fd\" \"php artisan queue:work  --memory=-1 --timeout=3600 --tries=1\" --names=queue"
         ]
     },
     "extra": {

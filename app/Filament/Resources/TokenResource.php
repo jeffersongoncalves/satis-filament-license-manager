@@ -108,8 +108,9 @@ class TokenResource extends Resource
                     ]),
                 Infolists\Components\Section::make()
                     ->label(__('tokens.infolist.section.packages'))
+                    ->relationship('packages')
                     ->schema([
-                        Infolists\Components\TextEntry::make('packages.name')
+                        Infolists\Components\TextEntry::make('name')
                             ->hiddenLabel()
                             ->listWithLineBreaks()
                             ->bulleted(),
