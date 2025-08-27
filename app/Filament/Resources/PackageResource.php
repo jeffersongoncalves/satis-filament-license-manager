@@ -228,6 +228,7 @@ class PackageResource extends Resource
                             ->columnSpan(1)
                             ->schema([
                                 Infolists\Components\RepeatableEntry::make('dependencies')
+                                    ->translateLabel(false)
                                     ->hiddenLabel()
                                     ->schema([
                                         Infolists\Components\TextEntry::make('name')
