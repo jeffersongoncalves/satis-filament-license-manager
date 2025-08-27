@@ -48,7 +48,7 @@ class Packagist extends Model
     private static function getRepoByPackagist(string $name): DependencyType
     {
         try {
-            return Http::get("https://repo.packagist.org/p/{$name}.json")->successful() ? DependencyType::Public : DependencyType::Private;
+            return Http::get("https://repo.packagist.org/p2/{$name}.json")->successful() ? DependencyType::Public : DependencyType::Private;
         } catch (ConnectionException $e) {
             return DependencyType::Private;
         }
